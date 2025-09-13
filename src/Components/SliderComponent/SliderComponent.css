@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* Container */
+.slider-container {
+  width: 100vw;
+  /* max-width: 1200px;  */
+  margin: auto;
+  position: relative;
+  border-bottom: 4px solid #db2777;
+  border-radius: 10px;
+}
+
+/* Slide wrapper */
+.slide {
+  position: relative;
+  width: 100%;
+}
+
+.slide-image {
+  width: 100%;
+  height: 60vh; /* relative to screen height */
+  min-height: 300px; /* keeps decent height for small devices */
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Left gradient shadow */
+.left-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 60%;
+  background: linear-gradient(to right, rgba(0,0,0,0.6), transparent);
+  border-radius: 12px 0 0 12px;
+  pointer-events: none;
+}
+
+/* Overlay text */
+.overlay {
+  position: absolute;
+  bottom: 10%;
+  left: 8%;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  z-index: 5;
+  max-width: 80%;
+}
+
+.overlay h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.8rem);
+  font-family: "Inclusive Sans", sans-serif;
+  margin: 0 0 8px 0;
+}
+
+.overlay p {
+  font-family: "Inclusive Sans", sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  margin: 0 0 10px 0;
+}
+
+/* Swiper arrows */
+.swiper-button-prev,
+.swiper-button-next {
+  color: gray !important;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Swiper dots */
+.swiper-pagination-bullet {
+  background: gray !important;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background: #db2777;
+  opacity: 1;
+}
+
+.btn {
+    position: absolute;
+    background-color: black;
+    z-index: 20;
+    bottom: -30px;
+    left: 5%;
+    padding: 14px 40px;
+    color: white;
+    font-size: 1.4rem;
+    font-family: "Inclusive Sans";
+    border-radius: 100px;
+    border: #db2777 4px solid;
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 768px) {
+  .slide-image {
+    height: 45vh;
+    min-height: 220px;
+  }
+
+  .overlay {
+    bottom: 5%;
+    left: 5%;
+    max-width: 90%;
+    text-align: left;
+    padding: 10px;
+  }
+
+  .overlay h2 {
+    font-size: 1.8rem;
+  }
+
+  .overlay p {
+    font-size: 1rem;
+  }
+
+  .left-shadow {
+    width: 80%; /* more coverage for better text readability */
+  }
+}
+
+/* 📱 Extra small devices */
+@media (max-width: 480px) {
+  .overlay {
+    bottom: 3%;
+    left: 4%;
+    padding: 8px;
+  }
+
+  .overlay h2 {
+    font-size: 1.4rem;
+  }
+
+  .overlay p {
+    font-size: 0.9rem;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 28px;
+    height: 28px;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 14px;
+  }
+}

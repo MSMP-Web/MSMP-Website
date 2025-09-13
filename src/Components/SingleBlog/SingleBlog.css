@@ -1,0 +1,36 @@
+.blog-detail {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 15%;
+}
+
+.blog-detail-title {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.blog-detail-data {
+  margin-bottom: 2.5rem;
+}
+
+.blog-detail-image {
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.blog-description {
+  margin-bottom: 5em;
+  white-space: pre-line;
+  text-align: justify;
+}
+
+@media (max-width: 600px) {
+  .blog-detail {
+    padding: 8%;
+  }
+}

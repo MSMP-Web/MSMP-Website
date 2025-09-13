@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+.title-section{
+    font-family: 'Poppins';
+}
+body{
+    font-family: 'Poppins';
+    background-color: white;
+}
+
