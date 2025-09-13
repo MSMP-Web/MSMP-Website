@@ -99,6 +99,7 @@
     font-family: "Inclusive Sans";
     border-radius: 100px;
     border: #db2777 4px solid;
+    cursor: pointer;
 }
 
 /* 📱 Mobile adjustments */
