@@ -26,7 +26,7 @@ const BlogCardLeft = ({ id, title, description, date, readTime, image }) => {
             {description}
           </p>
 
-          <Link to={`/blog/${id}`} className="read-more" >
+          <Link to={`/events/${id}`} className="read-more" >
             Read now →
           </Link>
         </div>

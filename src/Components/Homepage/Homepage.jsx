@@ -177,13 +177,13 @@ const blogData = [
   },
 ];
 
-function BlogCard({ title, img, description, link }) {
+function BlogCard({ title, image, details, link }) {
   return (
     <div className="blog-card">
-      <img src={img} alt={title} className="blog-img" />
+      <img src={image} alt={title} className="blog-img" />
       <div className="blog-content">
         <h2>{title}</h2>
-        <p>{description}</p>
+        <p>{details}</p>
         <a href={link} className="info-btn">
           <Link to={"/blogs"}>Read More</Link>
         </a>
@@ -192,19 +192,22 @@ function BlogCard({ title, img, description, link }) {
   );
 }
 
+const displayedEvents = allData.slice(0, 4);
 function BlogSection() {
   const displayedBlogs = blogData.slice(0, 4); // Show only first 4 blogs
 
   return (
     <>
       <div className="blog-section-grid">
-        {displayedBlogs.map((blog) => (
+        {/* {displayedBlogs.map((blog) => ( */}
+        {displayedEvents.map((blog) => (
           <BlogCard key={blog.id} {...blog} />
         ))}
       </div>
       <div className="btn-container">
-        <Link to={"/blogs"} className="more-blogs-btn">
-          More Blogs
+        {/* <Link to={"/blogs"} className="more-blogs-btn"> */}
+        <Link to={"/events"} className="more-blogs-btn">
+          More Events
         </Link>
       </div>
     </>
@@ -221,7 +224,6 @@ function EventCards() {
     }));
   };
 
-  const displayedEvents = allData.slice(0, 4);
 
   return (
     <>
@@ -289,10 +291,10 @@ const Homepage = () => {
       <div className="homepage-she-speaks">
         <LeftTitleSection title={"Voices In Action"} />
       </div>
-      <EventCards />
-      <div className="homepage-she-speaks">
+      {/* <EventCards />   */}
+      {/* <div className="homepage-she-speaks">
         <RightTitleSection title={"She Speaks"} />
-      </div>
+      </div> */}
       <BlogSection />
       <Footer />
     </>
