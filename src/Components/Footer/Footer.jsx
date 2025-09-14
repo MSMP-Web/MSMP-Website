@@ -3,6 +3,7 @@ import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import logo from "../../assets/logo.png";
 import bottomMandela from "../../assets/mandalaBottom.png";
 import "./Footer.css"; // external CSS
+import meshCraftLogo from "../../assets/MESH.png"
 
 const Footer = () => {
   return (
@@ -62,7 +63,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-credit">
-          <img src="MESH.png" alt="Meshcraft" />
+          {/* <img src="MESH.png" alt="Meshcraft" /> */}
+          <img src={meshCraftLogo} alt="Meshcraft" />
           <span>made by Meshcraft Pvt Ltd</span> @2025
         </div>
       </div>
