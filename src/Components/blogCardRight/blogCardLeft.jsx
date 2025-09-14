@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./blogCardLeft.css";
+import "./BlogCardLeft.css";
 import mandala from "../../assets/mandalaRight.png";
 import Separator from "../Separator/Separator";
 import { Link } from "react-router-dom";
@@ -26,7 +26,7 @@ const BlogCardLeft = ({ id, title, description, date, readTime, image }) => {
             {description}
           </p>
 
-          <Link to={`/events/${id}`} className="read-more" >
+          <Link to={`/blog/${id}`} className="read-more" >
             Read now →
           </Link>
         </div>

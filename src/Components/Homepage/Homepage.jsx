@@ -185,7 +185,7 @@ function BlogCard({ title, image, details, link }) {
         <h2>{title}</h2>
         <p>{details}</p>
         <a href={link} className="info-btn">
-          <Link to={"/blogs"}>Read More</Link>
+          <Link to={"/events"}>Read More</Link>
         </a>
       </div>
     </div>
