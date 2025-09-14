@@ -57,7 +57,7 @@ const allData = [
     title: "Narivadi Samvad - a webinar series",
     description:
       "Narivadi Samvad # 1 on 24th August 2025 from 4 pm to 7 pm \nTopic - Sexual Assault\nSpeakers - Supreme court Advocate Vrinda Grover, Activist Sandhya Gokhale and Chayanika Shah.\n \nThe Mathura rape case, where a minor tribal girl was raped by police, was a pivotal incident for Maharashtra's feminist movement. Despite legal efforts by Seema Sakhare and protests by women's organizations, the Supreme Court ruled against Mathura. Over four decades, the movement has seen legal changes, and new challenges like sexual violence against marginalized communities, children, and transgender individuals. Key discussion points include evaluating current laws and the justice system, assessing the movement's work on these issues, debates on punishment, identifying blind spots, anticipating future forms of sexual violence, understanding justice in an anarchic environment, and the future of the struggle when the state denies justice, including the concept of 'command responsibility.'\n\nNariwadi Samvad #2 on 14th September 2025 from 4 pm to 6 pm \nTopic - Communal Nationalism\nSpeakers - Advocate Teesta Setalvad and activist Shama Dalwai \n",
-    image: "",
+    image: null,
     date: "Aug 24, 2025",
     details:
       "The 'Narivadi Samvad' webinar series addresses urgent issues like sexual assault and communal nationalism. The first session examines systemic failures and legal challenges, while experts share insights on justice and accountability.\n\nThe second session focuses on rising communal tensions, equipping activists with strategies to advocate for justice and equality in hostile environments.",
