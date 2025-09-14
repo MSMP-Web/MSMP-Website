@@ -12,43 +12,43 @@ const ImageSlider = () => {
   const navigate = useNavigate();
   const slides = [
     {
-      id: 2,
+      id: 10,
       img: "We are united in MSMP.png",
       title: "We are united in MSMP",
       info: "",
     },
     {
-      id: 4,
+      id: 1,
       img: "No to Manusmruti Yes to Sanvidhan @ Chiplun.png",
       title: "No to Manusmruti Yes to Sanvidhan",
       info: "",
     },
     {
-      id: 8,
+      id: 5,
       img: "Meeting of the district representatives.png",
       title: "Meeting of the district representatives",
       info: "",
     },
     {
-      id: 3,
+      id: 11,
       img: "MSMP press conference on 26th June.png",
       title: "MSMP press conference on 26th June",
       info: "",
     },
     {
-      id: 5,
+      id: 2,
       img: "Safety Audit of Chandrapur railway station.png",
       title: "Safety Audit of Chandrapur railway station",
       info: "",
     },
     {
-      id: 11,
+      id: 8,
       img: "Vidarbh Region meeting.png",
       title: "Vidarbh Region Meeting",
       info: "",
     },
     {
-      id: 10,
+      id: 7,
       img: "Marathwada region meeting.png",
       title: "Marathwada region Meeting",
       info: "",
