@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./BlogCardLeft.css";
+import "./blogCardLeft.css";
 import mandala from "../../assets/mandalaRight.png";
 import Separator from "../Separator/Separator";
 import { Link } from "react-router-dom";
