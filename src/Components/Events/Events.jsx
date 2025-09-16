@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import allData from "../../data/alldata";
+import {allData} from "../../data/alldata";
 import Footer from "../Footer/Footer";
 import RightTitleSection from "../RightTitleSection/RightTitleSection";
 import BlogCardLeft from "../blogCardRight/blogCardLeft";

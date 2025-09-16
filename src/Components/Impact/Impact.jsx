@@ -11,17 +11,17 @@ function Impact() {
       <div className="main">
         <div className="row">
           <div className="card">
-            <h1>33</h1>
+            <h1>46</h1>
             <p>Organisations</p>
           </div>
 
           <div className="card">
-            <h1>135</h1>
+            <h1>164</h1>
             <p>Members of MSMP</p>
           </div>
 
           <div className="card">
-            <h1>2</h1>
+            <h1>4</h1>
             <p>Campaigns</p>
           </div>
 

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import allData from "../../data/alldata";
+import {allData} from "../../data/alldata";
 import "./SingleBlog.css";
 import Footer from "../Footer/Footer";
+import Placeholder from "../Placeholder/Placeholder";
 
 const SingleBlog = () => {
   const { id } = useParams();
@@ -13,7 +14,8 @@ const SingleBlog = () => {
   }, []);
 
   if (!blog) {
-    return <h2>Blog not found</h2>;
+    // return <h2>Blog not found</h2>;
+    return <Placeholder/>
   }
 
   return (

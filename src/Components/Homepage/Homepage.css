@@ -295,6 +295,9 @@
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
+/* .fc-event-title {
+  word-break: keep-all;
+} */
 
 .fc-daygrid-event:hover {
   background-color: #eb6893;
@@ -361,7 +364,7 @@
     max-width: 90%;
     width: 100%;
   }
-} 
+}
 
 /* Tablets */
 @media (max-width: 1024px) {

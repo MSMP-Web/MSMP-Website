@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-
-// FullCalendar imports
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import { notices,CalendarEvents } from "../../data/alldata";
 
 const Navbar = ({
   showCalendar,
@@ -17,23 +15,13 @@ const Navbar = ({
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Example events for calendar
-  const events = [
-    { title: "Women Empowerment Workshop", date: "2025-09-10" },
-    {
-      title: "Community Awareness Drive",
-      date: "2025-09-15",
-      color: "#d65a84",
-    },
-  ];
-
   return (
     <header className="navbar">
       {/* Top bar */}
       <div className="top-bar">
         <span className="phone">Dr. Kunda Pramila Nilakanth: 9969148654</span>
         <span className="phone">Sangeeta Saraf: 9819230274</span>
-        <span className="phone">Jyoti Mhapasekar: 9867724529</span>
+        <span className="phone">Sangeeta Joshi: 9422669036</span>
         <span className="language">Email: streevadiparishad@msmporg.in</span>
         <span className="language">Language</span>
         <div className="social-icons">
@@ -59,7 +47,6 @@ const Navbar = ({
           </div>
         </div>
 
-        {/* Hamburger Button */}
         <div
           className={`hamburger ${menuOpen ? "active" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -69,7 +56,6 @@ const Navbar = ({
           <span></span>
         </div>
 
-        {/* Nav Links */}
         <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
           <a href="/">HOME</a>
           <div className="dropdown"></div>
@@ -77,7 +63,6 @@ const Navbar = ({
             <a href="/about">ABOUT US</a>
           </div>
           <a href="/events">EVENTS</a>
-          {/* <a href="/blogs">BLOG</a> */}
           <div className="dropdown">
             <a href="#">
               BLOG ▾
@@ -93,8 +78,9 @@ const Navbar = ({
               <a href="#">Page Is Under Development !</a>
             </div>
           </div>
+
           <div className="dropdown">
-            <a href="#">ANNOUNCEMENTS ▾</a>
+            <a href="#">HIGHLIGHTS ▾</a>
             <div className="dropdown-content">
               <a
                 onClick={(e) => {
@@ -102,9 +88,8 @@ const Navbar = ({
                   setShowNotice(true);
                 }}
               >
-                Latest Announcement
+                Latest Highlights
               </a>
-
               <a
                 href="#"
                 onClick={(e) => {
@@ -116,10 +101,7 @@ const Navbar = ({
               </a>
             </div>
           </div>
-          <a href="contactus  ">CONTACT US</a>
-          {/* <a href="#">
-            <i className="fas fa-search"></i>
-          </a> */}
+          <a href="contactus">CONTACT US</a>
         </nav>
       </div>
 
@@ -136,66 +118,43 @@ const Navbar = ({
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin]}
               initialView="dayGridMonth"
-              events={events}
+              events={CalendarEvents}
               height="auto"
             />
           </div>
         </div>
       )}
 
+      {/* Notice Modal */}
       {showNotice && (
-        <div className="notice-modal">
-          <div className="notice-content">
+        <div className="notice-modal-overlay">
+          <div className="notice-modal-content">
             <button
               className="notice-close"
               onClick={() => setShowNotice(false)}
             >
               ✕
             </button>
-            <h1 className="notice-modal-heading">Announcements</h1>
-
-            <div className="scrollable">
-              <div className="notice">
-                <div>
-                  <h1 className="notice-heading">
-                    Notice: Mahila Sabha (Women’s Meeting)
-                  </h1>
-                  <p>
-                    All self-help group (SHG) leaders are invited to discuss
-                    upcoming empowerment initiatives and skill development
-                    workshops.
-                  </p>
+            <h2 className="noticeboard-title">Latest Highlights</h2>
+            <div className="noticeboard-list">
+              {notices.map((notice, index) => (
+                <div className="noticeboard-item" key={index}>
+                  <div className="noticeboard-text">
+                    <h3 className="noticeboard-heading">{notice.title}</h3>
+                    <p
+                      className="noticeboard-description"
+                      dangerouslySetInnerHTML={{
+                        __html: notice.text.replace(/\n/g, "<br />"),
+                      }}
+                    ></p>
+                  </div>
+                  <img
+                    src="new-notice.png"
+                    alt="New Notice"
+                    className="noticeboard-icon"
+                  />
                 </div>
-                <img src="new-notice.png" className="new-notice-icon" alt="" />
-              </div>
-
-              <div className="notice">
-                <div>
-                  <h1 className="notice-heading">
-                    Notice: Mahila Sabha (Women’s Meeting)
-                  </h1>
-                  <p>
-                    All self-help group (SHG) leaders are invited to discuss
-                    upcoming empowerment initiatives and skill development
-                    workshops.
-                  </p>
-                </div>
-                <img src="new-notice.png" className="new-notice-icon" alt="" />
-              </div>
-
-              <div className="notice">
-                <div>
-                  <h1 className="notice-heading">
-                    Notice: Mahila Sabha (Women’s Meeting)
-                  </h1>
-                  <p>
-                    All self-help group (SHG) leaders are invited to discuss
-                    upcoming empowerment initiatives and skill development
-                    workshops.
-                  </p>
-                </div>
-                <img src="new-notice.png" className="new-notice-icon" alt="" />
-              </div>
+              ))}
             </div>
           </div>
         </div>

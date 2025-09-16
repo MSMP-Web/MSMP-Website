@@ -25,8 +25,14 @@ const ImageSlider = () => {
     },
     {
       id: 5,
-      img: "Meeting of the district representatives.png",
-      title: "Meeting of the district representatives",
+      img: "Vicharmanthan Gadchiroli.jpg",
+      title: "Vicharmanthan Gadchiroli",
+      info: "",
+    },
+    {
+      id: null,
+      img: "Mahila Sahitya Sammelan Thane.png",
+      title: "Mahila Sahitya Sammelan Thane",
       info: "",
     },
     {

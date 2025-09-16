@@ -360,3 +360,122 @@
     text-align: center;
   }
 }
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .top-bar {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .top-bar .phone,
+  .top-bar .language {
+    flex: 1 1 100%;
+    margin: 0.25rem 0;
+  }
+
+  .top-bar .social-icons {
+    justify-content: center;
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-bar {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .top-bar .phone,
+  .top-bar .language {
+    margin: 0.2rem 0;
+  }
+
+  .top-bar .social-icons a {
+    font-size: 0.9rem;
+  }
+}
+
+/* Modal overlay */
+.notice-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.notice-modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Close button */
+.notice-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: #d65a84;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Title */
+.noticeboard-title {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Scrollable list */
+.noticeboard-list {
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* Notice item styling */
+.noticeboard-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Notice text */
+.noticeboard-text {
+  flex: 1;
+}
+
+/* Notice heading */
+.noticeboard-heading {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Description */
+.noticeboard-description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Icon */
+.noticeboard-icon {
+  width: 50px;
+  height: 50px;
+}
+
