@@ -23,7 +23,7 @@ const Navbar = ({
         <span className="phone">Sangeeta Saraf: 9819230274</span>
         <span className="phone">Sangeeta Joshi: 9422669036</span>
         <span className="language">Email: streevadiparishad@msmporg.in</span>
-        <span className="language">Language</span>
+        {/* <span className="language">Language</span> */}
         <div className="social-icons">
           <a href="https://www.facebook.com/profile.php?id=61578878787699">
             <FaFacebookF />

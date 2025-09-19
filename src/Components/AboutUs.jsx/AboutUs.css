@@ -1,7 +1,8 @@
-.title-section{
-    z-index: 1;
+.title-section {
+  z-index: 1;
 }
-/* General Layout */
+
+/* 🌐 General Layout */
 .aboutus-main {
   background: #faf9f8;
   width: 100%;
@@ -9,7 +10,7 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* --- About Us Section --- */
+/* 🏛️ About Us Section */
 .aboutus-section {
   width: 100%;
   position: relative;
@@ -32,13 +33,18 @@
 }
 
 .aboutus-text {
-  color: #111;
+  flex: 1;
+  color: #333;
   text-align: right;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.75rem;
+  font-size: clamp(0.9rem, 2vw, 1.125rem);
+  line-height: 1.6;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.aboutus-text p {
+  margin-bottom: 1rem;
 }
 
 .aboutus-img img {
@@ -50,7 +56,7 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Logo Section --- */
+/* 🪪 Logo Section */
 .logo-grid {
   display: flex;
   justify-content: center;
@@ -67,12 +73,12 @@
   width: clamp(180px, 30vw, 250px);
   height: clamp(180px, 30vw, 250px);
   border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: 4px solid #f0f0f0;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 4px solid #f0f0f0;
-  margin: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .logo-box img {
@@ -81,18 +87,7 @@
   object-fit: contain;
 }
 
-.aboutus-text {
-  flex: 1;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  line-height: 1.6;
-  color: #333;
-}
-
-.aboutus-text p {
-  margin-bottom: 1rem;
-}
-
-/* --- Meet Our Team --- */
+/* 👥 Meet Our Team */
 .team-section {
   padding: clamp(2rem, 5vw, 3rem) 1.5rem;
   background: white;
@@ -148,7 +143,7 @@
   font-size: clamp(0.75rem, 2vw, 0.85rem);
 }
 
-/* --- Purpose In Motion --- */
+/* 🌀 Purpose In Motion */
 .purpose-section {
   padding: clamp(3rem, 6vw, 5rem) 1.5rem;
   background: #fff;
@@ -178,8 +173,8 @@
   color: #2c2c2c;
   position: relative;
   cursor: pointer;
-  transition: color 0.3s ease;
   padding-top: clamp(1.5rem, 5vw, 3em);
+  transition: color 0.3s ease;
 }
 
 .purpose-item:hover {
@@ -210,7 +205,7 @@
   opacity: 0.4;
 }
 
-/* --- Objectives / The Way Sections --- */
+/* 🗂️ Objectives / The Way Section */
 .card-section {
   padding: clamp(2rem, 6vw, 4rem) 1.5rem;
   background: #fff;
@@ -248,7 +243,6 @@
   align-items: flex-start;
 }
 
-
 .card-bullet {
   width: 8px;
   height: 8px;
@@ -257,7 +251,7 @@
   margin-top: 0.5rem;
 }
 
-/* --- Contact Section --- */
+/* ✉️ Contact Section */
 .contact-section {
   padding: clamp(2rem, 6vw, 4rem) 1.5rem;
   background: #fff;
@@ -279,7 +273,7 @@
   max-width: 500px;
   background: #f9f9f9;
   border-radius: 1rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -329,3 +323,65 @@
 .contact-submit:hover {
   background: #d14c7a;
 }
+
+/* 📱 Responsive Adjustments */
+
+/* Tablet (≤1024px) */
+@media (max-width: 1024px) {
+  .aboutus-grid {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .aboutus-text {
+    text-align: center;
+  }
+
+  .purpose-items {
+    gap: 2rem;
+  }
+}
+
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .purpose-item {
+    font-size: 1.25rem;
+    gap: 1rem;
+  }
+
+  .card-container {
+    padding: 1.5rem;
+  }
+
+  .contact-form {
+    padding: 1.5rem;
+  }
+}
+
+  /* Small Mobile (≤480px) */
+  @media (max-width: 480px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .purpose-item {
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .purpose-separator {
+      display: none;
+    }
+
+    .contact-form {
+      padding: 1rem;
+    }
+    .logo-grid{
+      flex-direction: column;
+    }
+  }

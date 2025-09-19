@@ -1,6 +1,6 @@
 .blog-card {
   position: relative;
-  color: black; 
+  color: black;
   overflow: hidden;
   padding: 16px;
   margin: 20px auto;
@@ -80,3 +80,9 @@
   color: #ff4c8b;
 }
 
+/* Small Mobile (≤480px) */
+@media (max-width: 480px) {
+  .blog-card{
+    width: 95vw;
+  }
+}

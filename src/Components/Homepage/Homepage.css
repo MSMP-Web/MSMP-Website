@@ -1,8 +1,10 @@
-/* Events Section */
+/* =========================
+   Events Section
+========================= */
 .events-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
-  gap: 1.5rem; /* space between rows and columns */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
   margin: 2rem auto;
   max-width: 90vw;
   width: 100%;
@@ -33,9 +35,9 @@
 
 .event-content {
   display: flex;
-  gap: 1rem;
+  flex-direction: row;
   align-items: center;
-  flex-direction: row; /* default layout */
+  gap: 1rem;
 }
 
 .event-image {
@@ -54,7 +56,7 @@
 }
 
 .event-text p {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.5rem;
   font-size: 1rem;
   font-weight: 500;
   color: #333;
@@ -92,11 +94,11 @@
   font-weight: 600;
   font-size: 1.5rem;
   margin: 40px;
+  transition: background 0.15s;
 }
 
 .more-events-btn:hover {
   background-color: #e63670;
-  transition: 0.15s;
   cursor: pointer;
 }
 
@@ -106,7 +108,9 @@
   justify-content: center;
 }
 
-/* Blog Section */
+/* =========================
+   Blog Section
+========================= */
 .blog-card {
   width: 320px;
   background: #fff;
@@ -168,9 +172,9 @@
 
 .blog-section {
   display: flex;
-  gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 
@@ -186,18 +190,11 @@
 
 .blog-section-grid .blog-card {
   width: 45vw;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease-in-out;
 }
 
-.blog-section-grid .blog-card:hover {
-  transform: translateY(-4px);
-}
-
-/* About Section */
+/* =========================
+   About Section
+========================= */
 .about-intro {
   font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
@@ -210,7 +207,9 @@
   padding: 0 1rem;
 }
 
-/* Calendar Section */
+/* =========================
+   Calendar Section
+========================= */
 .fc {
   max-width: 1000px;
   margin: 2rem auto;
@@ -292,12 +291,9 @@
   border-radius: 8px;
   padding: 0.3rem 0.5rem;
   font-size: 0.875rem;
-  transition: background-color 0.3s ease;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-/* .fc-event-title {
-  word-break: keep-all;
-} */
 
 .fc-daygrid-event:hover {
   background-color: #eb6893;
@@ -333,38 +329,21 @@
 .calendar-notice-flex {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
   margin: 20px 0;
 }
 
 .calendar-wrapper,
 .noticeboard-wrapper {
-  flex: 1 1 300px; /* Grow and shrink as needed, with a base width of 300px */
-  max-width: 600px; /* Optional: limit width */
-}
-
-.calendar-wrapper {
+  flex: 1 1 300px;
+  max-width: 600px;
   min-width: 300px;
 }
 
-.noticeboard-wrapper {
-  min-width: 300px;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 900px) {
-  .calendar-notice-flex {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .calendar-wrapper,
-  .noticeboard-wrapper {
-    max-width: 90%;
-    width: 100%;
-  }
-}
+/* =========================
+   Responsive Adjustments
+========================= */
 
 /* Tablets */
 @media (max-width: 1024px) {
@@ -378,15 +357,33 @@
   }
 }
 
-/* Phones – Single Column & Stack Image on Top */
+/* Tablets & Small Laptops */
+@media (max-width: 900px) {
+  .calendar-notice-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendar-wrapper,
+  .noticeboard-wrapper {
+    max-width: 90%;
+    width: 100%;
+  }
+}
+
+/* Phones */
 @media (max-width: 768px) {
+  .blog-section-grid .blog-card {
+    width: 85vw;
+  }
+
   .events-container {
     grid-template-columns: 1fr;
     max-width: 95vw;
   }
 
   .event-content {
-    flex-direction: column; /* stack image on top */
+    flex-direction: column;
     align-items: center;
     text-align: center;
   }
@@ -405,10 +402,7 @@
     font-size: 0.95rem;
   }
 
-  .event-details {
-    font-size: 0.85rem;
-  }
-
+  .event-details,
   .event-link {
     font-size: 0.85rem;
   }
@@ -428,16 +422,13 @@
   }
 }
 
-/* Smaller Phones */
+/* Small Phones */
 @media (max-width: 480px) {
   .event-text p {
     font-size: 0.9rem;
   }
 
-  .event-details {
-    font-size: 0.8rem;
-  }
-
+  .event-details,
   .event-link {
     font-size: 0.8rem;
   }
@@ -457,5 +448,9 @@
   .blog-section-grid {
     grid-template-columns: 1fr;
     max-width: 90vw;
+  }
+
+  .fc-event-title {
+    font-size: 8px;
   }
 }

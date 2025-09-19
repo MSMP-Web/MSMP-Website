@@ -10,7 +10,7 @@ import NoticeBoard from "../Notice/Notice";
 import RightTitleSection from "../RightTitleSection/RightTitleSection";
 import ImageSlider from "../SliderComponent/SliderComponent";
 import "./Homepage.css";
-import {allData,CalendarEvents} from "../../data/alldata";
+import { allData, CalendarEvents } from "../../data/alldata";
 
 // const CalendarEvents = [
 //   { title: "Sangli Parishad", date: "2025-09-06" },
@@ -201,7 +201,7 @@ function BlogCard({ title, image, details, link }) {
 
 const displayedEvents = allData.slice(0, 4);
 function BlogSection() {
-  // const displayedBlogs = blogData.slice(0, 4); 
+  // const displayedBlogs = blogData.slice(0, 4);
 
   return (
     <>
@@ -289,7 +289,8 @@ const Homepage = () => {
             plugins={[dayGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
             events={CalendarEvents}
-            height="auto"
+            contentHeight="auto"
+            aspectRatio={1.35} // prevents calendar from being too tall
           />
         </div>
         <div className="noticeboard-wrapper">

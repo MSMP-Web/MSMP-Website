@@ -119,11 +119,10 @@
   margin-top: 1rem;
   font-weight: bolder;
 }
-.footer-credit span{
-  font-family: 'godofwar';
+.footer-credit span {
+  font-family: "godofwar";
   font-weight: normal;
 }
-
 
 .footer-credit img {
   width: 60px;
@@ -155,4 +154,68 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* 📱 Tablets */
+@media (max-width: 1024px) {
+  .footer-mandala img {
+    width: 13rem;
+  }
+}
+
+/* 📱 Phones */
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-contact h3,
+  .footer-social h3 {
+    font-size: 1.1rem;
+  }
+
+  .footer-mandala img {
+    width: 12rem;
+  }
+
+  .footer-credit {
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+}
+
+/* 📱 Small Phones */
+@media (max-width: 480px) {
+  .footer-logo-img {
+    height: 3rem;
+  }
+
+  .footer-logo-text {
+    font-size: 1rem;
+  }
+
+  .footer-contact p {
+    font-size: 0.85rem;
+  }
+
+  .social {
+    padding: 0.4rem;
+  }
+
+  .footer-credit {
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .footer-credit img {
+    width: 50px;
+  }
+
+  .footer-mandala img {
+    width: 10rem;
+  }
 }

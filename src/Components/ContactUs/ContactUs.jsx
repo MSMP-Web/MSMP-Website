@@ -120,10 +120,10 @@ const ContactUs = () => {
               </a>
             </p>
             <p>
-              Jyoti Mhapasekar:{" "}
-              <a href="tel:+919867724529">
+              Sangeeta Joshi:{" "}
+              <a href="tel:+919422669036">
                 <br />
-                9867724529
+                9422669036
               </a>
             </p>
           </div>

@@ -29,4 +29,11 @@
   .toggle-image{
     height: 28px;
   }
+
+    /* Small Mobile (≤480px) */
+  @media (max-width: 480px) {
+    .fixed-buttons button{
+      padding: 10px
+    }
+  }
   

@@ -26,7 +26,7 @@ const Footer = () => {
             </h3>
             <p className="phone">Dr. Kunda Pramila Nilakanth: 9969148654</p>
             <p className="phone">Sangeeta Saraf: 9819230274</p>
-            <p className="phone">Jyoti Mhapasekar: 9867724529</p>
+            <p className="phone">Sangeeta Joshi: 9422669036</p>
             <p className="language">Email: streevadiparishad@msmporg.in</p>
           </div>
 
