@@ -12,6 +12,8 @@ import ImageSlider from "../SliderComponent/SliderComponent";
 import "./Homepage.css";
 import { allData, CalendarEvents } from "../../data/alldata";
 
+//wrap mandelas in <div className="homepage-she-speaks"> </div> to put them in z index -1
+
 // const CalendarEvents = [
 //   { title: "Sangli Parishad", date: "2025-09-06" },
 //   { title: "Safety Audit Workshop @ Pune", date: "2025-09-08" },
@@ -280,7 +282,9 @@ const Homepage = () => {
         inequalities, and building a future rooted in justice and equality.
       </div>
 
-      <LeftTitleSection title={"Calendar And Highlights"} />
+      <div className="homepage-she-speaks">
+        <LeftTitleSection title={"Calendar And Highlights"} />
+      </div>
 
       {/* Flex container for calendar and notice board */}
       <div className="calendar-notice-flex">

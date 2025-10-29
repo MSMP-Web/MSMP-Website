@@ -120,6 +120,72 @@ export const allData = [
       "The Gadchiroli District workshop invites women to discuss issues affecting their lives, especially reflecting on the progress made since 1975. Experts and community leaders will explore policy implementation and governance participation.\n\nMarking 50 years of women’s rights movements, this workshop empowers women to voice concerns and collaborate on actionable solutions for community development.",
     readTime: "3 mins",
   },
+  {
+    id: 12,
+    title: "Mahila Sahitya Sammelan, Thane",
+    description:
+      "Thane District\nMahila Sahitya Sammelan (Women’s Literature Conference)\nDate: 13th September 2025\nVenue: Thane\nTime: 10:30 AM onwards\n\nThe Mahila Sahitya Sammelan brought together eminent women writers, poets, academicians, and speakers to celebrate and reflect on women’s voices in Marathi literature and society. The event aimed to create a space for dialogue, creativity, and empowerment through the written word and performance.\n\nThe day began with an inspiring inaugural session at 10:30 AM featuring Ushakiran Atram and Saniya, who set the tone for the conference by highlighting the journey and challenges of women in the field of literature. At 12:30 PM, a thought-provoking panel discussion titled 'Parisanwad: Marathi Sahityatil Stree' brought together Neeraja, Ashwini Torane, and Heena Kausar to discuss the evolution of women’s representation in Marathi literature and the contemporary perspectives that shaped their narratives.\n\nAfter a brief recess, at 2:30 PM, a vibrant talk show featured noted personalities—Rahi Bhide, Indumati Jondhale, Chinmayi Sumit, and Chayanika—who shared their personal experiences and insights on balancing creativity, culture, and social responsibilities. The program concluded with an evocative 'Kavita Vachan' (poetry recitation) session at 4:30 PM by celebrated poets Chhaya Koregaokar, Sandhya Lagad, and Lakshmi Yadav, where emotions, strength, and imagination found their voice through poetic expression.\n\nThe Sammelan proved to be a literary feast that celebrated women’s intellect, artistry, and resilience while fostering meaningful connections among creative minds.",
+    image: "Mahila Sahitya Sammelan Thane.png",
+    date: "Sep 13, 2025",
+    details:
+      "The Mahila Sahitya Sammelan in Thane celebrated the creative and intellectual contributions of women in Marathi literature. The day-long event featured an engaging mix of discussions, talk shows, and poetry sessions led by renowned writers and artists. Participants explored the evolving role of women in literature and culture, exchanged ideas, and shared artistic expressions that continued to inspire the next generation of readers and creators.",
+    readTime: "4 mins",
+  },
+  {
+    id: 13,
+    title: "Residential Workshop on Safety Audit Data Consolidation, Pune",
+    description:
+      "Pune District\nResidential Workshop on Safety Audit Data Consolidation\nDate: 8th, 9th & 10th September 2025\nVenue: Pune\n\nA comprehensive three-day residential workshop was organized in Pune to consolidate, review, and interpret the Safety Audit data collected from 35 districts across Maharashtra. This data, gathered through extensive grassroots surveys and field studies, highlighted critical issues related to women’s safety, accessibility, and public infrastructure. The workshop aimed to facilitate a deep, collective analysis of this data through structured discussions, thematic group work, and participatory review sessions.\n\nExperts in gender studies, urban planning, social work, and community safety collaborated with district representatives to verify, validate, and synthesize the findings into actionable insights. Participants examined trends across urban and rural areas, compared safety conditions in different socio-economic contexts, and identified emerging challenges that required immediate policy attention.\n\nThe sessions also focused on creating visual data summaries, charts, and regional reports to ensure the findings were well-documented and accessible for policymakers, NGOs, and advocacy groups. By the end of the workshop, a draft consolidated report was prepared—capturing the voices, observations, and lived experiences of women from all 35 districts.\n\nBeyond data analysis, this workshop served as a platform for networking and capacity building. It encouraged collaboration among field workers, coordinators, and researchers to strengthen local safety mechanisms and promote community-driven monitoring systems. This initiative reinforced the long-term goal of ensuring safety, dignity, and equal participation of women in public life across Maharashtra.",
+    image: "Safety Audit Data analysis 2.png",
+    date: "Sep 8–10, 2025",
+    details:
+      "The three-day residential workshop in Pune served as a crucial step toward finalizing the Safety Audit project undertaken across 35 districts of Maharashtra. Through collaborative analysis and discussion, participants compiled data, identified critical trends, and prepared a detailed state-level report. This collective effort not only enhanced understanding of safety issues faced by women but also contributed to shaping future policies and programs aimed at building safer and more inclusive communities.",
+    readTime: "3 mins",
+  },
+  {
+    id: 14,
+    title: "Nariwadi Sanwad – Webinar Series",
+    description:
+      "Online Series\nNariwadi Sanwad (Feminist Dialogue) – Webinar Series\nDates: 24th August & 14th September 2025\nVenue: Virtual Platform\n\nThe Nariwadi Sanwad webinar series brought together leading voices from across India to engage in critical discussions on women’s rights, justice, and equality. This two-part online dialogue aimed to deepen understanding of socio-political challenges faced by women and marginalized communities through a feminist lens.\n\nOn 24th August 2025, the first session focused on **Sexual Violence**, featuring renowned speakers Adv. Vrinda Grover, Sandhya Gokhale, and Chayanika. The discussion explored the legal, social, and psychological dimensions of sexual violence, highlighting the gaps in justice delivery, survivor support, and the need for structural change. Participants gained insight into ongoing advocacy efforts and the role of collective action in addressing systemic gender-based violence.\n\nThe second session, held on 14th September 2025, addressed the theme of **Aggressive Communalism**, with speakers Tista Setalvad and Shama Dalwai. This dialogue examined the intersection of gender, religion, and politics in contemporary India, analyzing how communal polarization affected women and communities at large. The session encouraged critical reflection on resistance movements and solidarity-building across different identities.\n\nThrough these thought-provoking webinars, Nariwadi Sanwad continued its commitment to creating a platform for feminist dialogue, awareness, and transformative social change.",
+    image: "Nariwadi Sanwad 1.png",
+    date: "Aug 24 & Sep 14, 2025",
+    details:
+      "The Nariwadi Sanwad webinar series provided an online space for critical feminist discussions on pressing social and political issues. The sessions on Sexual Violence and Aggressive Communalism featured distinguished speakers and activists who brought legal, cultural, and experiential perspectives to the forefront. By encouraging open dialogue and collective reflection, the series inspired informed advocacy, amplified women’s voices, and strengthened the movement for justice and equality.",
+    readTime: "4 mins",
+  },
+  {
+    id: 15,
+    title: "Web Seminar on Targeted Violence and Its Impact on Women, Pune",
+    description:
+      "Pune District\nWeb Seminar organized by Pune Committee\nDate: 29th September 2025\nVenue: Online Platform\n\nThe Pune Committee will host an insightful web seminar to address the issue of **targeted violence against minority communities and its far-reaching effects on women**. The discussion aims to create awareness about the growing social intolerance and its gendered implications in both public and private spheres.\n\nThe session will feature distinguished speakers — **Anagha Lele**, a PUCL activist known for her work in human rights advocacy; **Tamanna Inamdar**, a senior activist who has been actively involved in women’s safety and community development initiatives; and **Heena Kausar Khan**, a journalist and social activist who brings a media perspective to the issue. Together, they will analyze how targeted violence disrupts women’s safety, dignity, and participation in community life.\n\nThe seminar encourages participants to share local experiences, understand the intersection of gender and identity-based violence, and explore strategies for building solidarity and resilience among affected communities. This event reflects the Pune Committee’s continued commitment to addressing contemporary challenges faced by women and promoting inclusive justice and peace.",
+    image: "Vardha Melawa 14 September.png",
+    date: "Sep 29, 2025",
+    details:
+      "The Pune Committee’s web seminar on 'Targeted Violence Against Minority Communities and Its Effect on Women' served as a platform for critical dialogue on the intersection of gender, religion, and social justice. Featuring activists and journalists with extensive field experience, the session aimed to raise awareness, strengthen community response, and encourage collaborative efforts to safeguard women’s rights in the face of increasing intolerance and discrimination.",
+    readTime: "3 mins",
+  },
+  {
+    id: 16,
+    title: "One-Day Gathering on Women's Issues and Rights, Wardha",
+    description:
+      "Wardha District\nOrganized by Maharashtra Stree Mukti Parishad\nDate: 14th September 2025\nVenue: Sevagram, Wardha\n\nThe Maharashtra Stree Mukti Parishad, Wardha District, organized a one-day gathering focused on **women’s issues, rights, and empowerment** on 14th September 2025 at Sevagram. The event brought together women activists, community leaders, and participants from neighboring districts to discuss the present status of women’s rights and the ongoing challenges they face in social, economic, and political spaces.\n\nThe session featured inspiring addresses by **Yaminitai Chaudhary (Nagpur)**, **Shubhadatai Deshmukh (Kurkheda, Gadchiroli)**, and **Arunatai Sachane (Nagpur)**. These speakers emphasized the importance of sustained awareness, legal literacy, and collective action for ensuring gender justice. Participants engaged in open dialogues, shared field experiences, and explored strategies for strengthening local women’s movements.\n\nThe gathering also revisited the vision of equality and self-reliance that has guided the women’s movement in Maharashtra over the decades. By bringing together voices from different districts, the event fostered solidarity and reaffirmed the commitment to advancing women’s rights and social transformation.",
+    image: "Wardha Gathering 2025.png",
+    date: "Sep 14, 2025",
+    details:
+      "The one-day gathering organized at Sevagram, Wardha, served as a meaningful platform for discussing women’s issues and rights in contemporary society. With prominent speakers from Nagpur and Gadchiroli who shared their insights, the event highlighted the importance of collective participation and continued advocacy for equality and empowerment. It strengthened regional collaboration among women’s groups and contributed to building a more aware and active movement for social justice.",
+    readTime: "3 mins",
+  },
+  {
+    id: 17,
+    title: "Women’s Parishad, Majalgaon, Dist. Beed",
+    description:
+      "Beed District\nWomen’s Parishad (Conference)\nVenue: Majalgaon, Dist. Beed\nDate: [Date to be announced]\n\nThe Women’s Parishad held at Majalgaon in Beed District served as a dynamic forum for addressing issues concerning women’s rights, equality, and empowerment. Organized under the initiative of the Maharashtra Stree Mukti Parishad, the gathering brought together women leaders, activists, educators, and local participants to discuss pressing concerns faced by women in rural and semi-urban communities.\n\nThe event featured interactive discussions, keynote talks, and experience-sharing sessions focused on topics such as gender-based violence, economic self-reliance, women’s participation in local governance, and access to education and health services. Participants reflected on ongoing challenges and shared success stories from the ground that showcased resilience and collective strength.\n\nThe Parishad provided a vital platform for uniting diverse voices from across Beed District, fostering dialogue, awareness, and solidarity among women. It concluded with a collective resolution to strengthen local women’s organizations, encourage leadership among young women, and continue advocating for justice, equality, and dignity in every sphere of life.",
+    image: "Majalgaon Dist Beed Parishad 12 October 2.png",
+    date: "To be announced",
+    details:
+      "The Women’s Parishad at Majalgaon, Beed District, created an empowering space for dialogue on women’s rights and community issues. Through active participation and thoughtful discussions, the event reinforced the importance of unity, awareness, and leadership in advancing gender equality at the grassroots level. It marked another significant step in the ongoing efforts of the Maharashtra Stree Mukti Parishad to build stronger, more inclusive women’s networks across the state.",
+    readTime: "3 mins",
+  },
 ];
 
 export const CalendarEvents = [
@@ -133,22 +199,46 @@ export const CalendarEvents = [
   { title: "Chandrapur Parishad", date: "2025-10-04" },
   { title: "Yavatmal Parishad", date: "2025-10-05" },
   { title: "Latur Parishad", date: "2025-10-12" },
+  { title: "Majalgaon Parishad, Dist Beed", date: "2025-10-13" },
+  { title: "Pune Websession", date: "2025-10-18" },
+  { title: "Women in Media - Dialogue", date: "2025-10-25" },
+  { title: "Narwadi Sanvad #3", date: "2025-10-26" },
+  { title: "Pune Region Conference", date: "2025-11-01" },
+  { title: "Dalit Women’s Issues Dialogue", date: "2025-11-09" },
+  { title: "Vidarbh Region Conference, Nagpur", date: "2025-11-17" },
+  { title: "Marathwada Region Conference, Chhatrapati Sambhaji Nagar", date: "2025-11-23" },
   { title: "Maharashtra Stree Mukti Parishad @ Mumbai", date: "2025-12-20" },
   { title: "Maharashtra Stree Mukti Parishad @ Mumbai", date: "2025-12-21" },
   { title: "Maharashtra Stree Mukti Parishad @ Mumbai", date: "2025-12-22" },
 ];
 
+
 export const notices = [
+  // {
+  //   title: "Highlight 1: Mahila Sahitya Sammelan, Thane",
+  //   text: "13th September 2025\n\n10:30 am - <b>Inauguration Ushakiran Atram and Saniya</b>\n\n12:30 pm - <b>Parisanwad Marathi Sahityatil Stree - Neeraja, Ashwini Torane, Heena Kausar</b>\n\n2:30 pm - <b>Talk Show Rahi Bhide, Indumati Jondhale, Chinmayi Sumit & Chayanika</b>\n\n4:30 pm - <b>Kavita Vachan Chhaya Koregaokar, Sandhya Lagad, Lakshmi Yadav</b>",
+  // },
+  // {
+  //   title: "Highlight 2: Residential Workshop at Pune",
+  //   text: "8, 9 & 10th September 2025\n\nResidential workshop at Pune. Consolidation of Safety Audit data collected from 35 districts of Maharashtra. Collective efforts to analyse the data. Preparation of report.",
+  // },
+  // {
+  //   title: "Highlight 3: Nariwadi Sanwad - Webinar Series",
+  //   text: "24th August - <b>Sexual Violence</b>\nSpeakers - Adv. Vrinda Grover, Sandhya Gokhale, Chayanika\n\n14th September - <b>Aggressive Communalism</b>\nSpeakers - Tista Setalvad, Shama Dalwai",
+  // },
   {
-    title: "Highlight 1: Mahila Sahitya Sammelan, Thane",
-    text: "13th September 2025\n\n10:30 am - <b>Inauguration Ushakiran Atram and Saniya</b>\n\n12:30 pm - <b>Parisanwad Marathi Sahityatil Stree - Neeraja, Ashwini Torane, Heena Kausar</b>\n\n2:30 pm - <b>Talk Show Rahi Bhide, Indumati Jondhale, Chinmayi Sumit & Chayanika</b>\n\n4:30 pm - <b>Kavita Vachan Chhaya Koregaokar, Sandhya Lagad, Lakshmi Yadav</b>",
+    title: "Nariwadi Sanvad #3 - Police, Family and Personal Decisions",
+    text: "Sunday, 26 October 2025\n4 pm to 6 pm (Online)\n\nIn this web session we will discuss attacks on young people who try to expose their self-independence to domineering families, despite mounting pressures to follow standards in personal lives, and the complicity of the state, especially the police, in the process.",
+    imageUrl: "Nariwadi Sanwad 3.png",
   },
   {
-    title: "Highlight 2: Residential Workshop at Pune",
-    text: "8, 9 & 10th September 2025\n\nResidential workshop at Pune. Consolidation of Safety Audit data collected from 35 districts of Maharashtra. Collective efforts to analyse the data. Preparation of report.",
+    title: "Meeting with Women Journalists",
+    text: "25th October 2025\n4 pm to 5 pm\nIn hybrid mode at Bombay Union of Journalists, Fort, Mumbai.",
   },
   {
-    title: "Highlight 3: Nariwadi Sanwad - Webinar Series",
-    text: "24th August - <b>Sexual Violence</b>\nSpeakers - Adv. Vrinda Grover, Sandhya Gokhale, Chayanika\n\n14th September - <b>Aggressive Communalism</b>\nSpeakers - Tista Setalvad, Shama Dalwai",
+    title:
+      "District Level Conference - Maharashtra Stree Mukti Parishad & Gramin Vikas Abhyas Kendra, Ahmednagar",
+    text: "12th October 2025\n\nChief Guest - Dr. Suresh Pathare (Director, Gramin Vikas Abhyas Kendra)\nConvenor - Adv. Nisha Shivurkar (Senior Feminist)\nGuest Speakers - Dr. Manisha Gupte, Com. Lata Bhise Sonawane, Ramesh Awasthi\n\n<b>Topics:</b>\n• Journey of Women’s Movement\n• MSMP Campaigns\n• Challenges ahead of Constitution\n• Missing Girls issue from Ahmednagar district\n• Different aspects of Violence and Abuse.",
+    videoUrl: "Ahilyadevinagar Conference 12 October.mp4",
   },
 ];

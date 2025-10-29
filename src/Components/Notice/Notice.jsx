@@ -1,22 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Notice.css";
 import { notices } from "../../data/alldata";
 
 const NoticeBoard = () => {
-    // const notices = [
-    //   {
-    //     title: "Highlight 1: Mahila Sahitya Sammelan, Thane",
-    //     text: "13th September 2025\n\n10:30 am - <b>Inauguration Ushakiran Atram and Saniya</b>\n\n12:30 pm - <b>Parisanwad Marathi Sahityatil Stree - Neeraja, Ashwini Torane, Heena Kausar</b>\n\n2:30 pm - <b>Talk Show Rahi Bhide, Indumati Jondhale, Chinmayi Sumit & Chayanika</b>\n\n4:30 pm - <b>Kavita Vachan Chhaya Koregaokar, Sandhya Lagad, Lakshmi Yadav</b>",
-    //   },
-    //   {
-    //     title: "Highlight 2: Residential Workshop at Pune",
-    //     text: "8, 9 & 10th September 2025\n\nResidential workshop at Pune. Consolidation of Safety Audit data collected from 35 districts of Maharashtra. Collective efforts to analyse the data. Preparation of report.",
-    //   },
-    //   {
-    //     title: "Highlight 3: Nariwadi Sanwad - Webinar Series",
-    //     text: "24th August - <b>Sexual Violence</b>\nSpeakers - Adv. Vrinda Grover, Sandhya Gokhale, Chayanika\n\n14th September - <b>Aggressive Communalism</b>\nSpeakers - Tista Setalvad, Shama Dalwai",
-    //   },
-    // ];
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const openVideo = (videoUrl) => {
+    setSelectedVideo(videoUrl);
+    setSelectedImage(null);
+    setIsLoading(true);
+  };
+
+  const openImage = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setSelectedVideo(null);
+  };
+
+  const handleVideoLoaded = () => {
+    setIsLoading(false);
+  };
+
+  const closeModal = () => {
+    setSelectedVideo(null);
+    setSelectedImage(null);
+    setIsLoading(false);
+  };
 
   return (
     <section className="noticeboard-container">
@@ -32,15 +42,88 @@ const NoticeBoard = () => {
                   __html: notice.text.replace(/\n/g, "<br />"),
                 }}
               ></p>
+
+              {/* Show video preview if videoUrl exists */}
+                    {/* Video Preview if available */}
+                    {notice.videoUrl && (
+                      <div
+                        className="video-preview"
+                        onClick={() => openVideo(notice.videoUrl)}
+                      >
+                        <video
+                          src={notice.videoUrl}
+                          muted
+                          preload="metadata"
+                          className="noticeboard-video-thumb"
+                        />
+                        <div className="play-overlay">▶</div>
+                      </div>
+                    )}{" "}
+                    {!notice.videoUrl && notice.imageUrl && (
+                      <div
+                        className="image-preview"
+                        onClick={() => openImage(notice.imageUrl)}
+                      >
+                        <img
+                          src={notice.imageUrl}
+                          alt={notice.title}
+                          className="noticeboard-image-thumb"
+                        />
+                      </div>
+                    )}
             </div>
-            <img
-              src="new-notice.png"
-              alt="New Notice"
-              className="noticeboard-icon"
-            />
           </div>
         ))}
       </div>
+
+      {/* Video Modal */}
+      {selectedVideo && (
+        <div className="video-modal" onClick={closeModal}>
+          <div
+            className="video-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className={`close-btn ${isLoading ? "hidden" : ""}`} onClick={closeModal}>
+              ✕
+            </span>
+
+            {/* Loader Overlay */}
+            {isLoading && (
+              <div className="video-loader">
+                <div className="spinner"></div>
+                <p>Loading video...</p>
+              </div>
+            )}
+
+            <video
+              src={selectedVideo}
+              controls
+              autoPlay
+              onLoadedData={handleVideoLoaded}
+              className={`modal-video-player ${isLoading ? "hidden" : ""}`}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div className="image-modal" onClick={closeModal}>
+          <div
+            className="image-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="close-btn" onClick={closeModal}>
+              ✕
+            </span>
+            <img
+              src={selectedImage}
+              alt="Notice"
+              className="modal-image-viewer"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 };

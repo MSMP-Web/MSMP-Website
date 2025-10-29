@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { notices,CalendarEvents } from "../../data/alldata";
+import { notices, CalendarEvents } from "../../data/alldata";
 
 const Navbar = ({
   showCalendar,
@@ -14,6 +14,33 @@ const Navbar = ({
   setShowNotice,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const openVideo = (videoUrl) => {
+    setSelectedVideo(videoUrl);
+    setIsLoading(true);
+  };
+
+  const handleVideoLoaded = () => {
+    setIsLoading(false);
+  };
+
+  const openImage = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setSelectedVideo(null);
+  };
+
+  const closeVideo = () => {
+    setSelectedVideo(null);
+    setIsLoading(false);
+  };
+    const closeModal = () => {
+    setSelectedVideo(null);
+    setSelectedImage(null);
+    setIsLoading(false);
+  };
 
   return (
     <header className="navbar">
@@ -23,7 +50,6 @@ const Navbar = ({
         <span className="phone">Sangeeta Saraf: 9819230274</span>
         <span className="phone">Sangeeta Joshi: 9422669036</span>
         <span className="language">Email: streevadiparishad@msmporg.in</span>
-        {/* <span className="language">Language</span> */}
         <div className="social-icons">
           <a href="https://www.facebook.com/profile.php?id=61578878787699">
             <FaFacebookF />
@@ -147,7 +173,35 @@ const Navbar = ({
                         __html: notice.text.replace(/\n/g, "<br />"),
                       }}
                     ></p>
+                    {/* Video Preview if available */}
+                    {notice.videoUrl && (
+                      <div
+                        className="video-preview"
+                        onClick={() => openVideo(notice.videoUrl)}
+                      >
+                        <video
+                          src={notice.videoUrl}
+                          muted
+                          preload="metadata"
+                          className="noticeboard-video-thumb"
+                        />
+                        <div className="play-overlay">▶</div>
+                      </div>
+                    )}{" "}
+                    {!notice.videoUrl && notice.imageUrl && (
+                      <div
+                        className="image-preview"
+                        onClick={() => openImage(notice.imageUrl)}
+                      >
+                        <img
+                          src={notice.imageUrl}
+                          alt={notice.title}
+                          className="noticeboard-image-thumb"
+                        />
+                      </div>
+                    )}
                   </div>
+
                   <img
                     src="new-notice.png"
                     alt="New Notice"
@@ -157,6 +211,55 @@ const Navbar = ({
               ))}
             </div>
           </div>
+
+          {/* Video Modal */}
+          {selectedVideo && (
+            <div className="video-modal" onClick={closeVideo}>
+              <div
+                className="video-modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="close-btn" onClick={closeVideo}>
+                  ✕
+                </span>
+
+                {/* Loader */}
+                {isLoading && (
+                  <div className="video-loader">
+                    <div className="spinner"></div>
+                    <p>Loading video...</p>
+                  </div>
+                )}
+
+                <video
+                  src={selectedVideo}
+                  controls
+                  autoPlay
+                  onLoadedData={handleVideoLoaded}
+                  className={`modal-video-player ${isLoading ? "hidden" : ""}`}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Image Modal */}
+          {selectedImage && (
+            <div className="image-modal" onClick={closeModal}>
+              <div
+                className="image-modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="close-btn" onClick={closeModal}>
+                  ✕
+                </span>
+                <img
+                  src={selectedImage}
+                  alt="Notice"
+                  className="modal-image-viewer"
+                />
+              </div>
+            </div>
+          )}
         </div>
       )}
     </header>

@@ -24,15 +24,16 @@ const ImageSlider = () => {
       info: "",
     },
     {
-      id: 5,
-      img: "Vicharmanthan Gadchiroli.jpg",
-      title: "Vicharmanthan Gadchiroli",
+      // id: null,
+      id: 12,
+      img: "Mahila Sahitya Sammelan Thane.png",
+      title: "Mahila Sahitya Sammelan Thane",
       info: "",
     },
     {
-      id: null,
-      img: "Mahila Sahitya Sammelan Thane.png",
-      title: "Mahila Sahitya Sammelan Thane",
+      id: 5,
+      img: "Vicharmanthan Gadchiroli.jpg",
+      title: "Vicharmanthan Gadchiroli",
       info: "",
     },
     {

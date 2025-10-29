@@ -207,6 +207,11 @@
   padding: 0 1rem;
 }
 
+.about-intro .title-section{
+  z-index: -1;
+
+}
+
 /* =========================
    Calendar Section
 ========================= */
