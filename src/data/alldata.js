@@ -206,12 +206,23 @@ export const CalendarEvents = [
   { title: "Pune Region Conference", date: "2025-11-01" },
   { title: "Dalit Women’s Issues Dialogue", date: "2025-11-09" },
   { title: "Vidarbh Region Conference, Nagpur", date: "2025-11-17" },
-  { title: "Marathwada Region Conference, Chhatrapati Sambhaji Nagar", date: "2025-11-23" },
+  {
+    title: "Marathwada Region Conference, Chhatrapati Sambhaji Nagar",
+    date: "2025-11-23",
+  },
   { title: "Maharashtra Stree Mukti Parishad @ Mumbai", date: "2025-12-20" },
   { title: "Maharashtra Stree Mukti Parishad @ Mumbai", date: "2025-12-21" },
   { title: "Maharashtra Stree Mukti Parishad @ Mumbai", date: "2025-12-22" },
+  { title: "Mumbai Regional Parishad", date: "2025-11-22" },
+  { title: "Film Festival for Harmony and Peace", date: "2025-11-29" },
+  { title: "Web Seminar on OBC Women’s Issues", date: "2025-11-30" },
+  { title: "Web Seminar on NT DNT Women’s Issues", date: "2025-12-03" },
+  { title: "Adiwasi’s Convention", date: "2025-12-08" },
+  { title: "Adiwasi’s Convention", date: "2025-12-09" },
+  { title: "Women Workers’ Parishad", date: "2025-12-13" },
+  { title: "Maharashtra Parishad", date: "2025-12-20" },
+  { title: "Maharashtra Parishad", date: "2025-12-21" },
 ];
-
 
 export const notices = [
   // {
@@ -226,19 +237,35 @@ export const notices = [
   //   title: "Highlight 3: Nariwadi Sanwad - Webinar Series",
   //   text: "24th August - <b>Sexual Violence</b>\nSpeakers - Adv. Vrinda Grover, Sandhya Gokhale, Chayanika\n\n14th September - <b>Aggressive Communalism</b>\nSpeakers - Tista Setalvad, Shama Dalwai",
   // },
+  // {
+  //   title: "Nariwadi Sanvad #3 - Police, Family and Personal Decisions",
+  //   text: "Sunday, 26 October 2025\n4 pm to 6 pm (Online)\n\nIn this web session we will discuss attacks on young people who try to expose their self-independence to domineering families, despite mounting pressures to follow standards in personal lives, and the complicity of the state, especially the police, in the process.",
+  //   imageUrl: "Nariwadi Sanwad 3.png",
+  // },
+  // {
+  //   title: "Meeting with Women Journalists",
+  //   text: "25th October 2025\n4 pm to 5 pm\nIn hybrid mode at Bombay Union of Journalists, Fort, Mumbai.",
+  // },
+  // {
+  //   title:
+  //     "District Level Conference - Maharashtra Stree Mukti Parishad & Gramin Vikas Abhyas Kendra, Ahmednagar",
+  //   text: "12th October 2025\n\nChief Guest - Dr. Suresh Pathare (Director, Gramin Vikas Abhyas Kendra)\nConvenor - Adv. Nisha Shivurkar (Senior Feminist)\nGuest Speakers - Dr. Manisha Gupte, Com. Lata Bhise Sonawane, Ramesh Awasthi\n\n<b>Topics:</b>\n• Journey of Women’s Movement\n• MSMP Campaigns\n• Challenges ahead of Constitution\n• Missing Girls issue from Ahmednagar district\n• Different aspects of Violence and Abuse.",
+  //   videoUrl: "Ahilyadevinagar Conference 12 October.mp4",
+  // },
   {
-    title: "Nariwadi Sanvad #3 - Police, Family and Personal Decisions",
-    text: "Sunday, 26 October 2025\n4 pm to 6 pm (Online)\n\nIn this web session we will discuss attacks on young people who try to expose their self-independence to domineering families, despite mounting pressures to follow standards in personal lives, and the complicity of the state, especially the police, in the process.",
-    imageUrl: "Nariwadi Sanwad 3.png",
+    title: "मुंबई विभागीय परिषद",
+    text: "22 November 2025\n10:00 am to 5:30 pm\nKhilafat House, Byculla, Mumbai.",
+    imageUrl: "Copy of मुंबई विभागीय परिषद image.png",
   },
   {
-    title: "Meeting with Women Journalists",
-    text: "25th October 2025\n4 pm to 5 pm\nIn hybrid mode at Bombay Union of Journalists, Fort, Mumbai.",
+    title: "Marathwada Regional Conference - Sambhajinagar (Aurangabad)",
+    text: "Regional conference focusing on key issues of women's rights and empowerment in Marathwada.",
+    imageUrl: "Marathwad regional conference.jpg",
   },
   {
     title:
-      "District Level Conference - Maharashtra Stree Mukti Parishad & Gramin Vikas Abhyas Kendra, Ahmednagar",
-    text: "12th October 2025\n\nChief Guest - Dr. Suresh Pathare (Director, Gramin Vikas Abhyas Kendra)\nConvenor - Adv. Nisha Shivurkar (Senior Feminist)\nGuest Speakers - Dr. Manisha Gupte, Com. Lata Bhise Sonawane, Ramesh Awasthi\n\n<b>Topics:</b>\n• Journey of Women’s Movement\n• MSMP Campaigns\n• Challenges ahead of Constitution\n• Missing Girls issue from Ahmednagar district\n• Different aspects of Violence and Abuse.",
-    videoUrl: "Ahilyadevinagar Conference 12 October.mp4",
+      "Web Discussion: Questions of Existence and Identity of OBC Women and the Reality of Caste",
+    text: "30th November 2025\n4:00 pm to 7:00 pm (Online)\n\n<b>Topic:</b> Contribution of OBC women in the movement over the last fifty years and their political role and challenges in relation to the caste census.\n\nSpeaker - Dr. Lata Pratibha Madhukar",
+    imageUrl: "Copy of OBC महिलांशी संवाद Poster.png",
   },
 ];

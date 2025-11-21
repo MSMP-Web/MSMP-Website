@@ -8,6 +8,7 @@ import SingleBlog from "./Components/SingleBlog/SingleBlog";
 import Events from "./Components/Events/Events";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import { useState } from "react";
+import Dashboard from "./Components/Admin/Dashboard/Dashboard";
 
 function App() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/blog/:id" element={<SingleBlog />} />
         <Route path="/event/:id" element={<SingleBlog />} />
         <Route path="/contactus" element={<ContactUs/>}/>
+        <Route path="/admin" element={<Dashboard/>}/>
       </Routes>
 
       <ToggleButtons

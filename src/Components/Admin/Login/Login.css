@@ -1,0 +1,217 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+  min-height: 100vh;
+  /* background-color: #fafafa;  */
+}
+
+.login-form {
+  background: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 3em;
+  width: 50vw;
+  max-width: 450px;
+  min-width: 320px;
+}
+
+.login-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #eb6893;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.login-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border 0.2s;
+  width: 100%;
+}
+
+.login-input:focus {
+  border: 1.5px solid #eb6893;
+  outline: none;
+}
+
+.login-button {
+  background: #eb6893;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.login-button:hover {
+  background: #d14c7a;
+}
+
+/* Floating popup styles */
+.floating-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: fadeInOut 3s ease forwards;
+  z-index: 9999;
+}
+
+/* Different popup types */
+.floating-popup.success {
+  background-color: #38a169; /* green */
+}
+
+.floating-popup.error {
+  background-color: #e53e3e; /* red */
+}
+
+/* Logout Button Styling */
+.logout-button {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  background-color: #eb6893;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.logout-button:hover {
+  background-color: #d14c7a;
+  transform: translateY(-2px);
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper .login-input {
+  width: 100%;
+  padding-right: 40px; /* space for eye icon */
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.6;
+  transition: 0.2s ease;
+}
+
+.toggle-eye:hover {
+  opacity: 1;
+}
+
+/* Responsive Logout Button */
+@media (max-width: 768px) {
+  logout-button {
+    top: 15px;
+    right: 20px;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logout-button {
+    top: 10px;
+    right: 15px;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Smooth fade in and out */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}
+
+/* ✅ Responsive Design */
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+  .login-form {
+    width: 70vw;
+    padding: 2rem;
+  }
+
+  .login-title {
+    font-size: 1.6rem;
+  }
+
+  .login-input,
+  .login-button {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile phones (480px and below) */
+@media (max-width: 480px) {
+  .login-container {
+    align-items: center;
+  }
+
+  .login-form {
+    width: 90vw;
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .login-title {
+    font-size: 1.4rem;
+  }
+
+  .login-input,
+  .login-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+}

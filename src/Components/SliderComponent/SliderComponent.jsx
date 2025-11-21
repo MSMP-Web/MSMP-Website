@@ -24,10 +24,9 @@ const ImageSlider = () => {
       info: "",
     },
     {
-      // id: null,
-      id: 12,
-      img: "Mahila Sahitya Sammelan Thane.png",
-      title: "Mahila Sahitya Sammelan Thane",
+      id: null,
+      img: "Copy of Vidarbha Parishad 3.jpg",
+      title: "Vidarbha Parishad",
       info: "",
     },
     {
@@ -49,9 +48,10 @@ const ImageSlider = () => {
       info: "",
     },
     {
-      id: 8,
-      img: "Vidarbh Region meeting.png",
-      title: "Vidarbh Region Meeting",
+      id: null,
+      // id: 8,
+      img: "PNDoshi college Yuva.png",
+      title: "PNDoshi College Yuva Abhiyan",
       info: "",
     },
     {
