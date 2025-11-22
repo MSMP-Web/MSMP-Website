@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css"; // Import the Flatpickr CSS
+// import "flatpickr/dist/themes/confetti.css";
+// import "flatpickr/dist/themes/airbnb.css";
+import "./DatePicker.css"
+import "flatpickr/dist/flatpickr.min.css"; 
 
 const DatePicker = ({ value, onChange }) => {
   const inputRef = useRef(null);

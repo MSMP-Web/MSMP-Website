@@ -35,7 +35,7 @@
   margin-top: 2em;
 }
 
-.card {
+.impact-card {
   flex: 1 1 250px; /* flexible width, minimum 250px */
   max-width: 200px;
   display: flex;
@@ -51,16 +51,16 @@
   transition: transform 0.3s ease;
 }
 
-.card:hover {
+.impact-card:hover {
   transform: translateY(-5px);
 }
 
-.card h1 {
+.impact-card h1 {
   font-size: clamp(1.8rem, 4vw, 3rem); /* responsive scaling */
   margin: 0;
 }
 
-.card p {
+.impact-card p {
   color: #D94C7A;
   font-weight: bold;
   font-size: clamp(1rem, 3.5vw, 1.5rem);
@@ -84,7 +84,7 @@
     align-items: center;
     gap: 25px;
   }
-  .card {
+  .impact-card {
     width: 90%;
     max-width: 350px;
   }
@@ -96,14 +96,14 @@
 
 /* Small mobile adjustments */
 @media (max-width: 480px) {
-  .card {
+  .impact-card {
     padding: 15px;
     min-height: 150px;
   }
-  .card h1 {
+  .impact-card h1 {
     font-size: 1.8rem;
   }
-  .card p {
+  .impact-card p {
     font-size: 1.1rem;
   }
 }
