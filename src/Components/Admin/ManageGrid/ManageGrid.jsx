@@ -4,8 +4,8 @@ import highlightIcon from "../../../assets/highlight.png";
 import BlogIcon from "../../../assets/blog.png";
 import carousalIcon from "../../../assets/Carousel.png";
 import calendarIcon from "../../../assets/calendar.png";
-import flagIcon from "../../../assets/flag.png";
-import speakerIcon from "../../../assets/speaker.png";
+import flagIcon from "../../../assets/Flag.png";
+import speakerIcon from "../../../assets/Speaker.png";
 
 function ManageGrid({ onLogout, onNavigate }) {
   const icons = [
