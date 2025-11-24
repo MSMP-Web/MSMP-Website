@@ -5,7 +5,7 @@ import LeftTitleSection from "../../LeftTitleSection/LeftTitleSection";
 import AddEventsToCalendar from "../AddEventsToCalendar/AddEventsToCalendar";
 import AddABlog from "../AddABlog/AddABlog";
 import AddAnEvent from "../AddAnEvent/AddAnEvent";
-import ManageHighlights from "../../ManageHighlights/ManageHighlights";
+import ManageHighlights from "../ManageHighlights/ManageHighlights";
 import ManageCarousal from "../ManageCarousal/ManageCarousal";
 import ManageVoicesInAction from "../ManageVoicesInAction/ManageVoicesInAction"
 function Login() {
@@ -61,6 +61,7 @@ function Login() {
       localStorage.setItem("loginData", JSON.stringify(loginData));
       setIsLoggedIn(true);
       showPopup("✅ Login successful!", "success");
+      setCurrentTitle("Welcome To Admin")
     } else {
       showPopup("❌ Incorrect username or password", "error");
     }
@@ -88,15 +89,15 @@ function Login() {
       setCurrentTitle("Add An Event");
     }
     if (componentName === "ManageHighlights") {
-      setCurrentTitle("Manage Highlights");
+      setCurrentTitle("Add Highlights To The Board");
     }
     if (componentName === "ManageCarousal") {
-      setCurrentTitle("Manage Carousal");
+      setCurrentTitle("Add Carousal");
     }
     if (componentName === "ManageVoicesInAction") {
       setCurrentTitle("Manage Voices In Action Bulletins");
     } else if (componentName === "ManageGrid") {
-      setCurrentTitle("Welcome To Admin Login");
+      setCurrentTitle("Welcome To Admin");
     }
   };
 

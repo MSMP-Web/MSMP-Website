@@ -3,14 +3,16 @@ import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from "@fullcalendar/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  CalendarEvents,
+  VoicesInActionContent
+} from "../../data/alldata";
 import Footer from "../Footer/Footer";
 import Impact from "../Impact/Impact";
 import LeftTitleSection from "../LeftTitleSection/LeftTitleSection";
 import NoticeBoard from "../Notice/Notice";
-import RightTitleSection from "../RightTitleSection/RightTitleSection";
 import ImageSlider from "../SliderComponent/SliderComponent";
 import "./Homepage.css";
-import { allData, CalendarEvents } from "../../data/alldata";
 
 //wrap mandelas in <div className="homepage-she-speaks"> </div> to put them in z index -1
 
@@ -201,9 +203,8 @@ function BlogCard({ title, image, details, link }) {
   );
 }
 
-const displayedEvents = allData.slice(0, 4);
+const displayedEvents = VoicesInActionContent;
 function BlogSection() {
-  // const displayedBlogs = blogData.slice(0, 4);
 
   return (
     <>

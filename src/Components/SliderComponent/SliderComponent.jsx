@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -7,60 +6,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useNavigate, Link } from "react-router-dom";
+import { slides } from "../../data/alldata";
 
 const ImageSlider = () => {
   const navigate = useNavigate();
-  const slides = [
-    {
-      id: 10,
-      img: "We are united in MSMP.png",
-      title: "We are united in MSMP",
-      info: "",
-    },
-    {
-      id: 1,
-      img: "No to Manusmruti Yes to Sanvidhan @ Chiplun.png",
-      title: "No to Manusmruti Yes to Sanvidhan",
-      info: "",
-    },
-    {
-      id: null,
-      img: "Copy of Vidarbha Parishad 3.jpg",
-      title: "Vidarbha Parishad",
-      info: "",
-    },
-    {
-      id: 5,
-      img: "Vicharmanthan Gadchiroli.jpg",
-      title: "Vicharmanthan Gadchiroli",
-      info: "",
-    },
-    {
-      id: 11,
-      img: "MSMP press conference on 26th June.png",
-      title: "MSMP press conference on 26th June",
-      info: "",
-    },
-    {
-      id: 2,
-      img: "Safety Audit of Chandrapur railway station.png",
-      title: "Safety Audit of Chandrapur railway station",
-      info: "",
-    },
-    {
-      id: null,
-      // id: 8,
-      img: "PNDoshi college Yuva.png",
-      title: "PNDoshi College Yuva Abhiyan",
-      info: "",
-    },
-    {
-      id: 7,
-      img: "Marathwada region meeting.png",
-      title: "Marathwada region Meeting",
-      info: "",
-    },
-  ];
 
   return (
     <div className="slider-container">
@@ -100,4 +49,3 @@ const ImageSlider = () => {
 };
 
 export default ImageSlider;
-

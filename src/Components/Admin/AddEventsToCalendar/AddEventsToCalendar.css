@@ -9,7 +9,7 @@
   min-height: 80vh;
 }
 
-.add-event-container .title-section{
+.add-event-container .title-section {
   margin-top: 7em;
 }
 
@@ -76,15 +76,15 @@
   justify-content: center;
 }
 
-.something {
-  display: flex;
-  gap: 1em;
-}
-
 .add-event-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.something {
+  display: flex;
+  gap: 1em;
 }
 
 /* .admin .title-section {
