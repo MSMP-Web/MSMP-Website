@@ -23,10 +23,16 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// POST create
+// POST create - auto-increment id
 router.post("/", async (req, res) => {
   try {
-    const created = await AllData.create(req.body);
+    // Get the last document to find the highest id
+    const lastDoc = await AllData.findOne().sort({ id: -1 }).limit(1);
+    const nextId = lastDoc ? lastDoc.id + 1 : 1;
+    
+    // Add auto-incremented id to request body
+    const dataWithId = { ...req.body, id: nextId };
+    const created = await AllData.create(dataWithId);
     res.status(201).json(created);
   } catch (err) {
     res.status(400).json({ error: err.message });

@@ -1,22 +1,53 @@
-import React, { useState } from "react";
-import BackButton from "../../BackButton/BackButton";
-import "./ManageHighlights.css";
-import DatePicker from "../../DatePicker/Datepicker";
+import { useEffect, useState } from "react";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
+import { uploadImageToCloudinary } from "../../../utils/imageHelper";
+import BackButton from "../../BackButton/BackButton";
 import RightTitleSection from "../../RightTitleSection/RightTitleSection";
-import { notices } from "../../../data/alldata";
+import "./ManageHighlights.css";
+
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 function ManageHighlights({ onBack }) {
   const [highlightData, setHighlightData] = useState({
     title: "",
-    description: "",
-    media: null, // image or video
+    text: "",
+    imageUrl: null,
+    videoUrl: null,
   });
+  const [mediaFile, setMediaFile] = useState(null);
+  const [mediaType, setMediaType] = useState(null); // 'image' or 'video'
+  const [highlightsList, setHighlightsList] = useState([]);
+  const [selectedToRemove, setSelectedToRemove] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [popup, setPopup] = useState(null);
 
   const handleBack = () => {
     if (onBack) onBack("ManageGrid");
   };
+
+  const showPopup = (message, type) => {
+    setPopup({ message, type });
+    setTimeout(() => setPopup(null), 3000);
+  };
+
+  // Fetch existing highlights on mount
+  useEffect(() => {
+    const fetchHighlights = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/notices`);
+        if (res.ok) {
+          const data = await res.json();
+          setHighlightsList(data);
+        }
+      } catch (err) {
+        console.error("Error fetching highlights:", err);
+        showPopup("❌ Error fetching highlights", "error");
+      }
+    };
+
+    fetchHighlights();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,40 +56,147 @@ function ManageHighlights({ onBack }) {
 
   const handleMediaUpload = (e) => {
     const file = e.target.files[0];
-    setHighlightData((prev) => ({ ...prev, media: file }));
+    if (file) {
+      setMediaFile(file);
+      const isVideo = file.type.startsWith('video/');
+      const isImage = file.type.startsWith('image/');
+      
+      if (isVideo) {
+        setMediaType('video');
+        setHighlightData((prev) => ({ 
+          ...prev, 
+          videoUrl: file.name,
+          imageUrl: null 
+        }));
+      } else if (isImage) {
+        setMediaType('image');
+        setHighlightData((prev) => ({ 
+          ...prev, 
+          imageUrl: file.name,
+          videoUrl: null 
+        }));
+      }
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Highlight Submitted:", highlightData);
-    alert("🎉 Highlight Added Successfully!");
-  };
 
-  // Remove highlight form state
-  const [highlightsList, setHighlightsList] = useState(notices || []);
-  const [selectedToRemove, setSelectedToRemove] = useState("");
+    // Validation
+    if (!highlightData.title.trim()) {
+      return showPopup("❌ Title required", "error");
+    }
+    if (!highlightData.text.trim()) {
+      return showPopup("❌ Description required", "error");
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      let imageUrl = highlightData.imageUrl;
+      let videoUrl = highlightData.videoUrl;
+
+      // Upload media to Cloudinary (image or video)
+      if (mediaFile) {
+        if (mediaType === 'video') {
+          showPopup("📤 Uploading video...", "info");
+          const uploadedUrl = await uploadImageToCloudinary(
+            mediaFile,
+            "msmp/highlights/videos"
+          );
+          videoUrl = uploadedUrl || mediaFile.name;
+          imageUrl = null;
+        } else if (mediaType === 'image') {
+          showPopup("📤 Uploading image...", "info");
+          const uploadedUrl = await uploadImageToCloudinary(
+            mediaFile,
+            "msmp/highlights"
+          );
+          imageUrl = uploadedUrl || mediaFile.name;
+          videoUrl = null;
+        }
+      }
+
+      // POST to backend
+      const res = await fetch(`${API_BASE}/api/notices`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },  
+        body: JSON.stringify({
+          title: highlightData.title,
+          text: highlightData.text,
+          imageUrl: imageUrl || null,
+          videoUrl: videoUrl || null,
+        }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Failed to add highlight");
+      }
+
+      const newHighlight = await res.json();
+      setHighlightsList((prev) => [...prev, newHighlight]);
+      setHighlightData({
+        title: "",
+        text: "",
+        imageUrl: null,
+        videoUrl: null,
+      });
+      setMediaFile(null);
+      setMediaType(null);
+      showPopup("✅ Highlight added successfully!", "success");
+    } catch (err) {
+      console.error("Error adding highlight:", err);
+      showPopup(`❌ ${err.message}`, "error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleRemoveChange = (e) => {
     setSelectedToRemove(e.target.value);
   };
 
-  const handleRemoveSubmit = (e) => {
+  const handleRemoveSubmit = async (e) => {
     e.preventDefault();
+
     if (!selectedToRemove) {
-      alert("Please select a title to remove.");
-      return;
+      return showPopup("❌ Please select a highlight to remove", "error");
     }
 
-    const idToRemove = Number(selectedToRemove);
-    const removed = highlightsList.find((h) => h.id === idToRemove);
-    setHighlightsList((prev) => prev.filter((h) => h.id !== idToRemove));
-    setSelectedToRemove("");
-    console.log("Removed highlight:", removed);
-    alert(`Removed highlight: ${removed ? removed.title : idToRemove}`);
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch(`${API_BASE}/api/notices/${selectedToRemove}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Failed to remove highlight");
+      }
+
+      setHighlightsList((prev) =>
+        prev.filter((h) => h._id !== selectedToRemove)
+      );
+      setSelectedToRemove("");
+      showPopup("✅ Highlight removed successfully!", "success");
+    } catch (err) {
+      console.error("Error removing highlight:", err);
+      showPopup(`❌ ${err.message}`, "error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <>
+      {popup && (
+        <div className={`popup popup-${popup.type}`}>
+          {popup.message}
+        </div>
+      )}
+
       <div className="highlight-form-container">
         <BackButton onClick={handleBack} />
 
@@ -73,6 +211,7 @@ function ManageHighlights({ onBack }) {
               value={highlightData.title}
               onChange={handleChange}
               className="highlight-input"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -83,57 +222,88 @@ function ManageHighlights({ onBack }) {
             </label>
             <ReactQuill
               theme="snow"
-              value={highlightData.description}
+              value={highlightData.text}
               onChange={(val) =>
-                setHighlightData((prev) => ({ ...prev, description: val }))
+                setHighlightData((prev) => ({ ...prev, text: val }))
               }
               className="rich-editor"
               placeholder="Write the description of the highlight"
+              readOnly={isSubmitting}
             />
           </div>
+
+          {/* Video URL (optional) */}
+          {/* <div className="highlight-group full-width">
+            <label className="highlight-label">Video URL (optional):</label>
+            <input
+              type="url"
+              name="videoUrl"
+              placeholder="https://example.com/video.mp4"
+              value={highlightData.videoUrl}
+              onChange={handleChange}
+              className="highlight-input"
+              disabled={isSubmitting}
+            />
+          </div> */}
 
           {/* Media + Button Row */}
           <div className="highlight-row">
             <div className="highlight-group">
               <label className="highlight-label">
-                Select Banner Image or Video:
+                Select Image or Video:
               </label>
 
               <label className="highlight-upload-box">
                 <span>
-                  {highlightData.media
-                    ? highlightData.media.name
+                  {highlightData.imageUrl
+                    ? `📷 ${highlightData.imageUrl}`
+                    : highlightData.videoUrl
+                    ? `🎥 ${highlightData.videoUrl}`
                     : "Upload an image or video"}
                 </span>
                 <input
                   type="file"
-                  accept="image/*, video/*"
+                  accept="image/*,video/*"
                   onChange={handleMediaUpload}
                   className="hidden-input"
+                  disabled={isSubmitting}
                 />
               </label>
             </div>
 
-            <button type="submit" className="highlight-submit-btn">
-              Done
+            <button
+              type="submit"
+              className="highlight-submit-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Adding..." : "Done"}
             </button>
           </div>
         </form>
         {/* Remove Highlight Form - single dropdown field as requested */}
 
         <RightTitleSection title={"Remove Highlights From The Board"} />
-        <form className="highlight-form remove-form" onSubmit={handleRemoveSubmit}>
-          <div className="highlight-group full-width" style={{marginTop:"1em", marginBottom:"1em"}}>
-            <label className="highlight-label">select the title of the highligt to be removed</label>
+        <form
+          className="highlight-form remove-form"
+          onSubmit={handleRemoveSubmit}
+        >
+          <div
+            className="highlight-group full-width"
+            style={{ marginTop: "1em", marginBottom: "1em" }}
+          >
+            <label className="highlight-label">
+              select the title of the highlight to be removed
+            </label>
             <select
               name="removeTitle"
               value={selectedToRemove}
               onChange={handleRemoveChange}
               className="highlight-input"
+              disabled={isSubmitting}
             >
               <option value="">-- Select title --</option>
               {highlightsList.map((h) => (
-                <option key={h.id} value={h.id}>
+                <option key={h._id} value={h._id}>
                   {h.title}
                 </option>
               ))}
@@ -141,8 +311,12 @@ function ManageHighlights({ onBack }) {
           </div>
 
           <div className="highlight-row">
-            <button type="submit" className="highlight-submit-btn remove-btn">
-              Remove
+            <button
+              type="submit"
+              className="highlight-submit-btn remove-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Removing..." : "Remove"}
             </button>
           </div>
         </form>

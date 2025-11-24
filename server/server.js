@@ -30,6 +30,9 @@ app.use("/api/notices", noticesRoutes);
 app.use("/api/slides", slidesRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/images", imagesRoutes);
+// const deleteAssetRoutes = require("./routes/deleteAsset");
+
+// app.use("/api/delete-asset", deleteAssetRoutes);
 
 // seed endpoint (dev convenience) - seeds DB with contents from frontend data file
 const path = require("path");

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { notices, CalendarEvents } from "../../data/alldata";
+import { getImageUrl } from "../../utils/imageHelper";
+
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 const Navbar = ({
   showCalendar,
@@ -17,6 +19,32 @@ const Navbar = ({
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [calendarEvents, setCalendarEvents] = useState([]);
+  const [notices, setNotices] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch calendar events
+        const calRes = await fetch(`${API_BASE}/api/calendar`);
+        if (calRes.ok) {
+          const cal = await calRes.json();
+          setCalendarEvents(cal);
+        }
+
+        // Fetch notices
+        const notRes = await fetch(`${API_BASE}/api/notices`);
+        if (notRes.ok) {
+          const nots = await notRes.json();
+          setNotices(nots);
+        }
+      } catch (err) {
+        console.error("Error fetching navbar data:", err);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const openVideo = (videoUrl) => {
     setSelectedVideo(videoUrl);
@@ -36,7 +64,7 @@ const Navbar = ({
     setSelectedVideo(null);
     setIsLoading(false);
   };
-    const closeModal = () => {
+  const closeModal = () => {
     setSelectedVideo(null);
     setSelectedImage(null);
     setIsLoading(false);
@@ -144,7 +172,7 @@ const Navbar = ({
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin]}
               initialView="dayGridMonth"
-              events={CalendarEvents}
+              events={calendarEvents}
               height="auto"
             />
           </div>
@@ -163,8 +191,8 @@ const Navbar = ({
             </button>
             <h2 className="noticeboard-title">Latest Highlights</h2>
             <div className="noticeboard-list">
-              {notices.map((notice, index) => (
-                <div className="noticeboard-item" key={index}>
+              {notices.map((notice) => (
+                <div className="noticeboard-item" key={notice._id || notice.id}>
                   <div className="noticeboard-text">
                     <h3 className="noticeboard-heading">{notice.title}</h3>
                     <p
@@ -191,10 +219,10 @@ const Navbar = ({
                     {!notice.videoUrl && notice.imageUrl && (
                       <div
                         className="image-preview"
-                        onClick={() => openImage(notice.imageUrl)}
+                        onClick={() => openImage(getImageUrl(notice.imageUrl))}
                       >
                         <img
-                          src={notice.imageUrl}
+                          src={getImageUrl(notice.imageUrl)}
                           alt={notice.title}
                           className="noticeboard-image-thumb"
                         />

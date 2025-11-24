@@ -5,6 +5,7 @@ const NoticeSchema = new mongoose.Schema(
     title: String,
     text: String,
     imageUrl: String,
+    videoUrl: String,
   },
   { timestamps: true }
 );

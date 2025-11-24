@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Notice.css";
-import { notices } from "../../data/alldata";
+import { getImageUrl } from "../../utils/imageHelper";
+
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 const NoticeBoard = () => {
+  const [notices, setNotices] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchNotices = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/notices`);
+        if (res.ok) {
+          const data = await res.json();
+          setNotices(data);
+        }
+      } catch (err) {
+        console.error("Error fetching notices:", err);
+      }
+    };
+
+    fetchNotices();
+  }, []);
 
   const openVideo = (videoUrl) => {
     setSelectedVideo(videoUrl);
@@ -32,8 +51,8 @@ const NoticeBoard = () => {
     <section className="noticeboard-container">
       <h2 className="noticeboard-title">Latest Highlights</h2>
       <div className="noticeboard-list">
-        {notices.map((notice, index) => (
-          <div className="noticeboard-item" key={index}>
+        {notices.map((notice) => (
+          <div className="noticeboard-item" key={notice._id || notice.id}>
             <div className="noticeboard-text">
               <h3 className="noticeboard-heading">{notice.title}</h3>
               <p
@@ -44,33 +63,32 @@ const NoticeBoard = () => {
               ></p>
 
               {/* Show video preview if videoUrl exists */}
-                    {/* Video Preview if available */}
-                    {notice.videoUrl && (
-                      <div
-                        className="video-preview"
-                        onClick={() => openVideo(notice.videoUrl)}
-                      >
-                        <video
-                          src={notice.videoUrl}
-                          muted
-                          preload="metadata"
-                          className="noticeboard-video-thumb"
-                        />
-                        <div className="play-overlay">▶</div>
-                      </div>
-                    )}{" "}
-                    {!notice.videoUrl && notice.imageUrl && (
-                      <div
-                        className="image-preview"
-                        onClick={() => openImage(notice.imageUrl)}
-                      >
-                        <img
-                          src={notice.imageUrl}
-                          alt={notice.title}
-                          className="noticeboard-image-thumb"
-                        />
-                      </div>
-                    )}
+              {notice.videoUrl && (
+                <div
+                  className="video-preview"
+                  onClick={() => openVideo(notice.videoUrl)}
+                >
+                  <video
+                    src={notice.videoUrl}
+                    muted
+                    preload="metadata"
+                    className="noticeboard-video-thumb"
+                  />
+                  <div className="play-overlay">▶</div>
+                </div>
+              )}{" "}
+              {!notice.videoUrl && notice.imageUrl && (
+                <div
+                  className="image-preview"
+                  onClick={() => openImage(getImageUrl(notice.imageUrl))}
+                >
+                  <img
+                    src={getImageUrl(notice.imageUrl)}
+                    alt={notice.title}
+                    className="noticeboard-image-thumb"
+                  />
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -83,7 +101,10 @@ const NoticeBoard = () => {
             className="video-modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <span className={`close-btn ${isLoading ? "hidden" : ""}`} onClick={closeModal}>
+            <span
+              className={`close-btn ${isLoading ? "hidden" : ""}`}
+              onClick={closeModal}
+            >
               ✕
             </span>
 

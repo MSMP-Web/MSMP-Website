@@ -1,21 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {allData} from "../../data/alldata";
 import "./SingleBlog.css";
 import Footer from "../Footer/Footer";
 import Placeholder from "../Placeholder/Placeholder";
+import { getImageUrl } from "../../utils/imageHelper";
+
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 const SingleBlog = () => {
   const { id } = useParams();
-  const blog = allData.find((b) => b.id.toString() === id);
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, []);
+
+    // Fetch blog by id from MongoDB
+    const fetchBlog = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/alldata/${id}`);
+        if (res.ok) {
+          const data = await res.json();
+          setBlog(data);
+        }
+      } catch (err) {
+        console.error("Error fetching blog:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlog();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <>
+        <div className="blog-detail">
+          <p>Loading blog...</p>
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
   if (!blog) {
-    // return <h2>Blog not found</h2>;
-    return <Placeholder/>
+    return <Placeholder />;
   }
 
   return (
@@ -27,10 +57,15 @@ const SingleBlog = () => {
         </span>
         <img
           className="blog-detail-image"
-          src={`/${blog.image}`}
+          src={getImageUrl(blog.image)}
           alt={blog.title}
         />
-  <p className="blog-description" dangerouslySetInnerHTML={{ __html: blog.description.replace(/\n/g, '<br/>') }} />
+        <p
+          className="blog-description"
+          dangerouslySetInnerHTML={{
+            __html: blog.description.replace(/\n/g, "<br/>"),
+          }}
+        />
       </div>
       <Footer />
     </>

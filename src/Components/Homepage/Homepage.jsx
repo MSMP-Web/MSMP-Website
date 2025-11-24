@@ -1,18 +1,17 @@
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from "@fullcalendar/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  CalendarEvents,
-  VoicesInActionContent
-} from "../../data/alldata";
 import Footer from "../Footer/Footer";
 import Impact from "../Impact/Impact";
 import LeftTitleSection from "../LeftTitleSection/LeftTitleSection";
 import NoticeBoard from "../Notice/Notice";
 import ImageSlider from "../SliderComponent/SliderComponent";
+import { getImageUrl } from "../../utils/imageHelper";
 import "./Homepage.css";
+
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 //wrap mandelas in <div className="homepage-she-speaks"> </div> to put them in z index -1
 
@@ -191,7 +190,7 @@ import "./Homepage.css";
 function BlogCard({ title, image, details, link }) {
   return (
     <div className="blog-card">
-      <img src={image} alt={title} className="blog-img" />
+      <img src={getImageUrl(image)} alt={title} className="blog-img" />
       <div className="blog-content">
         <h2>{title}</h2>
         <p>{details}</p>
@@ -203,19 +202,46 @@ function BlogCard({ title, image, details, link }) {
   );
 }
 
-const displayedEvents = VoicesInActionContent;
 function BlogSection() {
+  const [displayedEvents, setDisplayedEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchVoices = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/voices`);
+        if (res.ok) {
+          const data = await res.json();
+          setDisplayedEvents(data);
+        }
+      } catch (err) {
+        console.error("Error fetching voices:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVoices();
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+        <div className="blog-section-grid">
+          <p>Loading...</p>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
       <div className="blog-section-grid">
-        {/* {displayedBlogs.map((blog) => ( */}
         {displayedEvents.map((blog) => (
           <BlogCard key={blog.id} {...blog} />
         ))}
       </div>
       <div className="btn-container">
-        {/* <Link to={"/blogs"} className="more-blogs-btn"> */}
         <Link to={"/events"} className="more-blogs-btn">
           More Events
         </Link>
@@ -274,6 +300,28 @@ function EventCards() {
 }
 
 const Homepage = () => {
+  const [calendarEvents, setCalendarEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch calendar events from MongoDB
+  useEffect(() => {
+    const fetchCalendarEvents = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/calendar`);
+        if (res.ok) {
+          const data = await res.json();
+          setCalendarEvents(data);
+        }
+      } catch (err) {
+        console.error("Error fetching calendar events:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCalendarEvents();
+  }, []);
+
   return (
     <>
       <ImageSlider />
@@ -290,13 +338,15 @@ const Homepage = () => {
       {/* Flex container for calendar and notice board */}
       <div className="calendar-notice-flex">
         <div className="calendar-wrapper">
-          <FullCalendar
-            plugins={[dayGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            events={CalendarEvents}
-            contentHeight="auto"
-            aspectRatio={1.35} // prevents calendar from being too tall
-          />
+          {!loading && (
+            <FullCalendar
+              plugins={[dayGridPlugin, interactionPlugin]}
+              initialView="dayGridMonth"
+              events={calendarEvents}
+              contentHeight="auto"
+              aspectRatio={1.35}
+            />
+          )}
         </div>
         <div className="noticeboard-wrapper">
           <NoticeBoard />
@@ -307,10 +357,6 @@ const Homepage = () => {
       <div className="homepage-she-speaks">
         <LeftTitleSection title={"Voices In Action"} />
       </div>
-      {/* <EventCards />   */}
-      {/* <div className="homepage-she-speaks">
-        <RightTitleSection title={"She Speaks"} />
-      </div> */}
       <BlogSection />
       <Footer />
     </>

@@ -140,3 +140,43 @@
   color: #8a8a8a !important;
   font-weight: 500;
 }
+
+/* Popup notifications */
+.popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 1000;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.popup-success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.popup-error {
+  background-color: #f44336;
+  color: white;
+}
+
+.popup-info {
+  background-color: #2196f3;
+  color: white;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+

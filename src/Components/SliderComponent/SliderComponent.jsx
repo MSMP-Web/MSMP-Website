@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "./SliderComponent.css";
@@ -6,10 +6,29 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useNavigate, Link } from "react-router-dom";
-import { slides } from "../../data/alldata";
+import { getImageUrl } from "../../utils/imageHelper";
 
-const ImageSlider = () => {
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
+const SliderComponent = () => {
   const navigate = useNavigate();
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const fetchSlides = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/slides`);
+        if (res.ok) {
+          const data = await res.json();
+          setSlides(data);
+        }
+      } catch (err) {
+        console.error("Error fetching slides:", err);
+      }
+    };
+
+    fetchSlides();
+  }, []);
 
   return (
     <div className="slider-container">
@@ -21,12 +40,12 @@ const ImageSlider = () => {
         loop={true}
         spaceBetween={30}
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id}>
             <Link to={`/event/${slide.id}`} className="read-more">
               <div className="slide">
                 <img
-                  src={slide.img}
+                  src={getImageUrl(slide.img)}
                   alt={slide.title}
                   className="slide-image"
                 />
@@ -48,4 +67,5 @@ const ImageSlider = () => {
   );
 };
 
-export default ImageSlider;
+
+export default SliderComponent;
