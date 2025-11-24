@@ -45,26 +45,32 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const username = import.meta.env.VITE_USER_NAME;
-    const password = import.meta.env.VITE_PASSWORD;
-
-    if (
-      formData.name.trim() === username &&
-      formData.password.trim() === password
-    ) {
-      const loginData = {
-        username: formData.name,
-        timestamp: new Date().getTime(),
-      };
-
-      localStorage.setItem("loginData", JSON.stringify(loginData));
-      setIsLoggedIn(true);
-      showPopup("✅ Login successful!", "success");
-      setCurrentTitle("Welcome To Admin")
-    } else {
-      showPopup("❌ Incorrect username or password", "error");
-    }
+    // call backend login endpoint
+    const apiBase = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+    fetch(`${apiBase}/api/admin/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: formData.name, password: formData.password }),
+    })
+      .then(async (res) => {
+        const json = await res.json();
+        if (res.ok && json.ok) {
+          const loginData = {
+            username: formData.name,
+            timestamp: new Date().getTime(),
+          };
+          localStorage.setItem("loginData", JSON.stringify(loginData));
+          setIsLoggedIn(true);
+          showPopup("✅ Login successful!", "success");
+          setCurrentTitle("Welcome To Admin");
+        } else {
+          showPopup("❌ " + (json.error || "Incorrect username or password"), "error");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        showPopup("❌ Login failed. Check server.", "error");
+      });
   };
 
   const handleLogout = () => {
