@@ -1,47 +1,23 @@
 {
-  "name": "women_wellfare",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "msmp-backend",
+  "version": "1.0.0",
+  "description": "Express + MongoDB backend for MSMP-Website",
+  "main": "server.js",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"vite\"",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "server": "cd server && npm start"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.0.0",
-    "@fullcalendar/daygrid": "^6.1.19",
-    "@fullcalendar/interaction": "^6.1.19",
-    "@fullcalendar/react": "^6.1.19",
-    "@radix-ui/react-accordion": "^1.2.12",
-    "@radix-ui/react-dialog": "^1.1.15",
-    "@tailwindcss/vite": "^4.1.12",
-    "autoprefixer": "^10.4.21",
-    "clsx": "^2.1.1",
-    "emailjs-com": "^3.2.0",
-    "flatpickr": "^4.6.13",
-    "lucide-react": "^0.542.0",
-    "postcss": "^8.5.6",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-icons": "^5.5.0",
-    "react-quill-new": "^3.6.0",
-    "react-router-dom": "^7.8.2",
-    "swiper": "^11.2.10",
-    "tailwindcss": "^4.1.12"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.4",
+    "bcryptjs": "^2.4.3"
   },
   "devDependencies": {
-    "@eslint/js": "^9.33.0",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7",
-    "@vitejs/plugin-react": "^5.0.0",
-    "eslint": "^9.33.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.3.0",
-    "vite": "^7.1.2",
-    "concurrently": "^9.1.0"
+    "nodemon": "^2.0.22"
   }
 }
