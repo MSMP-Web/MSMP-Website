@@ -7,7 +7,7 @@ import { uploadImageToCloudinary } from "../../../utils/imageHelper";
 const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 function ManageCarousal({ onBack }) {
-  const [carousalData, setCarousalData] = useState({
+  const [ carousalData, setCarousalData] = useState({
     title: "",
     info: "",
     img: null,
@@ -37,7 +37,7 @@ function ManageCarousal({ onBack }) {
         const slidesRes = await fetch(`${API_BASE}/api/slides`);
         if (slidesRes.ok) {
           const slidesData = await slidesRes.json();
-          setCarousalList(slidesData);
+              setCarousalList(slidesData);
         }
 
         // Fetch events for the dropdown
@@ -100,12 +100,14 @@ function ManageCarousal({ onBack }) {
         }),
       });
 
+      const resText = await res.text();
       if (!res.ok) {
-        const errorData = await res.json();
+        let errorData = {};
+        try { errorData = JSON.parse(resText); } catch(e) { errorData = { error: resText }; }
         throw new Error(errorData.error || "Failed to add slide");
       }
 
-      const newSlide = await res.json();
+      const newSlide = JSON.parse(resText);
       setCarousalList((prev) => [...prev, newSlide]);
       setCarousalData({ title: "", info: "", img: null, id: "" });
       setImageFile(null);
@@ -130,7 +132,6 @@ function ManageCarousal({ onBack }) {
     }
 
     setIsSubmitting(true);
-    console.log(selectedToRemove)
 
     try {
       const res = await fetch(`${API_BASE}/api/slides/${selectedToRemove}`, {
@@ -143,7 +144,7 @@ function ManageCarousal({ onBack }) {
       }
 
       setCarousalList((prev) =>
-        prev.filter((c) => c.id !== selectedToRemove)
+        prev.filter((c) => c.id !== Number(selectedToRemove) && String(c.id) !== selectedToRemove)
       );
       setSelectedToRemove("");
       showPopup("✅ Slide removed successfully!", "success");

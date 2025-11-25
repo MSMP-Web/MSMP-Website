@@ -2,11 +2,10 @@ const mongoose = require("mongoose");
 
 const SlideSchema = new mongoose.Schema(
   {
-    id: { type: Number }, // Unique numeric ID for slide
+    id: { type: Number, required: true, unique: true }, // Link to blog/event by ID
     img: String,
     title: String,
     info: String,
-    id: { type: Number, default: null }, // Link to blog/event by ID
   },
   { timestamps: true }
 );

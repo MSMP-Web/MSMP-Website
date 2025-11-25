@@ -61,8 +61,6 @@ function AddEventsToCalendar({ onBack }) {
     setIsSubmitting(true);
 
     try {
-      console.log("Submitting to:", `${API_BASE}/api/calendar`);
-      console.log("Payload:", { title: formData.title, date: formData.date });
 
       const res = await fetch(`${API_BASE}/api/calendar`, {
         method: "POST",
@@ -73,11 +71,8 @@ function AddEventsToCalendar({ onBack }) {
         }),
       });
 
-      console.log("Response status:", res.status);
-      console.log("Response ok:", res.ok);
 
       const textData = await res.text();
-      console.log("Response text:", textData);
 
       if (!res.ok) {
         try {
@@ -89,7 +84,6 @@ function AddEventsToCalendar({ onBack }) {
       }
 
       const newEvent = JSON.parse(textData);
-      console.log("New event created:", newEvent);
       setCalendarEvents((prev) => [...prev, newEvent]);
       setFormData({ date: "", title: "" });
       showPopup("✅ Event added successfully!", "success");
@@ -113,14 +107,11 @@ function AddEventsToCalendar({ onBack }) {
     setIsSubmitting(true);
 
     try {
-      console.log("Deleting event:", selectedToRemove);
       const res = await fetch(`${API_BASE}/api/calendar/${selectedToRemove}`, {
         method: "DELETE",
       });
 
-      console.log("Delete response status:", res.status);
       const textData = await res.text();
-      console.log("Delete response text:", textData);
 
       if (!res.ok) {
         try {

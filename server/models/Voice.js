@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const VoiceSchema = new mongoose.Schema(
   {
     id: Number,
+    position: Number,
     title: String,
     description: String,
     image: String,

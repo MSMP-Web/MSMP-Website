@@ -37,16 +37,17 @@ function ManageVoicesInAction({ onBack }) {
         if (voicesRes.ok) {
           const voices = await voicesRes.json();
           setVoicesData(voices);
-          
-          // Track which voices are currently stored (by id)
+
+          // Track which voices are currently stored (by event id)
           const voiceIds = voices.map((v) => v.id);
           setCurrentVoiceIds(voiceIds);
-          
-          // Pre-populate selections if voices exist
+
+          // Pre-populate selections if voices exist (use position to sort)
           if (voices.length > 0) {
-            setSelected(
-              voices.slice(0, 4).map((v) => v.id)
-            );
+            const sorted = voices
+              .slice(0, 4)
+              .sort((a, b) => (a.position || 0) - (b.position || 0));
+            setSelected(sorted.map((v) => v.id));
           }
         }
       } catch (err) {
@@ -92,17 +93,12 @@ function ManageVoicesInAction({ onBack }) {
     setIsSubmitting(true);
 
     try {
-      // Delete existing voice documents for each position
-      for (let i = 0; i < 4; i++) {
-        const currentVoiceId = i + 1; // Voice IDs are 1, 2, 3, 4
-        try {
-          await fetch(`${API_BASE}/api/voices/${currentVoiceId}`, {
-            method: "DELETE",
-          });
-        } catch (err) {
-          // It's ok if voice doesn't exist yet
-          console.log(`Voice ${currentVoiceId} doesn't exist yet, continuing...`);
-        }
+      // Clear all existing voice documents so we don't accumulate duplicates.
+      try {
+        const clearRes = await fetch(`${API_BASE}/api/voices`, { method: "DELETE" });
+        if (!clearRes.ok) console.warn("[ManageVoices] clear voices returned", clearRes.status);
+      } catch (err) {
+        console.warn("[ManageVoices] failed to clear voices, continuing:", err);
       }
 
       // Create new voices from the selected events
@@ -118,7 +114,8 @@ function ManageVoicesInAction({ onBack }) {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                id: i + 1, // Assign fixed IDs (1, 2, 3, 4)
+                id: event.id, // Assign fixed IDs (1, 2, 3, 4)
+                position: i + 1,
                 title: event.title,
                 description: event.description,
                 image: event.image,
@@ -135,9 +132,18 @@ function ManageVoicesInAction({ onBack }) {
         }
       }
 
-      // Update local state
-      const newVoiceIds = selected.filter((id) => id).map(Number);
-      setCurrentVoiceIds(newVoiceIds);
+      // Refresh voices from server and update local state
+      try {
+        const refreshed = await fetch(`${API_BASE}/api/voices`);
+        if (refreshed.ok) {
+          const v = await refreshed.json();
+          setVoicesData(v);
+          setCurrentVoiceIds(v.map((x) => x.id));
+        }
+      } catch (err) {
+        console.warn("Failed to refresh voices after save", err);
+      }
+
       showPopup("✅ Voices configuration saved successfully!", "success");
     } catch (err) {
       console.error("Error saving voices:", err);

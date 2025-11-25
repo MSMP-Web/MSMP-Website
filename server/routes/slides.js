@@ -16,22 +16,36 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const item = await Slide.findOne({ id: Number(req.params.id) });
-    if (!item) return res.status(404).json({ error: "Not found" });
+    if (!item) {
+      return res.status(404).json({ error: "Not found" });
+    }
     res.json(item);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// POST create - auto-increment id
+// POST create - require client-provided numeric id (use event id)
 router.post("/", async (req, res) => {
   try {
-    // Get the last document to find the highest id
-    const lastDoc = await Slide.findOne().sort({ id: -1 }).limit(1);
-    const nextId = lastDoc ? lastDoc.id + 1 : 1;
-    
-    // Add auto-incremented id to request body
-    const dataWithId = { ...req.body, id: nextId };
+    // Require an id in the request body (this should be the event id)
+    if (!req.body || (req.body.id === undefined || req.body.id === null)) {
+      return res.status(400).json({ error: "`id` (event id) is required in request body" });
+    }
+
+    const idToUse = Number(req.body.id);
+    if (Number.isNaN(idToUse)) {
+      return res.status(400).json({ error: "`id` must be a numeric event id" });
+    }
+
+    const dataWithId = { ...req.body, id: idToUse };
+
+    // Prevent duplicate slides for the same event id
+    const existing = await Slide.findOne({ id: idToUse });
+    if (existing) {
+      return res.status(400).json({ error: `Slide for event id ${idToUse} already exists` });
+    }
+
     const created = await Slide.create(dataWithId);
     res.status(201).json(created);
   } catch (err) {
@@ -43,7 +57,9 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const updated = await Slide.findOneAndUpdate({ id: Number(req.params.id) }, req.body, { new: true });
-    if (!updated) return res.status(404).json({ error: "Not found" });
+    if (!updated) {
+      return res.status(404).json({ error: "Not found" });
+    }
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -54,7 +70,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const deleted = await Slide.findOneAndDelete({ id: Number(req.params.id) });
-    if (!deleted) return res.status(404).json({ error: "Not found" });
+    if (!deleted) {
+      return res.status(404).json({ error: "Not found" });
+    }
     res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
