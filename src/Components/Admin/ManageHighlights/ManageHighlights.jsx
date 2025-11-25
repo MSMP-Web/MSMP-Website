@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
-import { uploadImageToCloudinary } from "../../../utils/imageHelper";
+import { uploadImageToCloudinary, deleteFromCloudinary } from "../../../utils/imageHelper";
 import BackButton from "../../BackButton/BackButton";
 import RightTitleSection from "../../RightTitleSection/RightTitleSection";
 import "./ManageHighlights.css";
@@ -167,18 +167,42 @@ function ManageHighlights({ onBack }) {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch(`${API_BASE}/api/notices/${selectedToRemove}`, {
-        method: "DELETE",
-      });
+      // Get the latest highlight data from backend using selectedToRemove
+      let highlight = null;
+      try {
+        const getRes = await fetch(`${API_BASE}/api/notices/${selectedToRemove}`);
+        if (getRes.ok) {
+          highlight = await getRes.json();
+        }
+      } catch (err) {
+        console.warn("Could not fetch highlight from server, falling back to local list", err);
+      }
 
-      if (!res.ok) {
-        const errorData = await res.json();
+      // Fallback to local copy if necessary
+      if (!highlight) {
+        highlight = highlightsList.find((h) => h._id === selectedToRemove || h.id === selectedToRemove);
+      }
+
+      // If we have media urls, attempt deletion from Cloudinary
+      if (highlight) {
+        if (highlight.imageUrl) {
+          showPopup("🗑️ Deleting image...", "info");
+          try { await deleteFromCloudinary(highlight.imageUrl); } catch (err) { console.warn("Failed to delete image from Cloudinary:", err); }
+        }
+        if (highlight.videoUrl) {
+          showPopup("🗑️ Deleting video...", "info");
+          try { await deleteFromCloudinary(highlight.videoUrl); } catch (err) { console.warn("Failed to delete video from Cloudinary:", err); }
+        }
+      }
+
+      // Delete the DB record
+      const deleteRes = await fetch(`${API_BASE}/api/notices/${selectedToRemove}`, { method: "DELETE" });
+      if (!deleteRes.ok) {
+        const errorData = await deleteRes.json();
         throw new Error(errorData.error || "Failed to remove highlight");
       }
 
-      setHighlightsList((prev) =>
-        prev.filter((h) => h._id !== selectedToRemove)
-      );
+      setHighlightsList((prev) => prev.filter((h) => h._id !== selectedToRemove && h.id !== selectedToRemove));
       setSelectedToRemove("");
       showPopup("✅ Highlight removed successfully!", "success");
     } catch (err) {

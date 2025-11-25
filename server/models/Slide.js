@@ -6,7 +6,7 @@ const SlideSchema = new mongoose.Schema(
     img: String,
     title: String,
     info: String,
-    eventId: { type: Number, default: null }, // Link to blog/event by ID
+    id: { type: Number, default: null }, // Link to blog/event by ID
   },
   { timestamps: true }
 );

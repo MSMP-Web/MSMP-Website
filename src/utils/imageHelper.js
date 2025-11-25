@@ -83,4 +83,46 @@ export const uploadImageToCloudinary = async (file, folder = "msmp/uploads") => 
   }
 };
 
-export default { getImageUrl, fetchImageUrl, uploadImageToCloudinary };
+/**
+ * Delete image/video from Cloudinary by providing its full URL or public ID.
+ * This calls the server-side endpoint `/api/delete-asset` which uses the
+ * Cloudinary Admin API (requires server-side credentials).
+ * @param {string} url - Full Cloudinary URL or public ID
+ * @returns {Promise<boolean>} - true if deletion attempted, false otherwise
+ */
+export const deleteFromCloudinary = async (url) => {
+  if (!url) return false;
+
+  try {
+    // Try to extract public_id from a Cloudinary URL if provided
+    let publicId = url;
+    if (typeof url === "string" && url.includes("cloudinary.com")) {
+      const parts = url.split("/upload/");
+      if (parts.length > 1) {
+        let tail = parts[1];
+        // remove version prefix like v123456789/
+        tail = tail.replace(/^v\d+\//, "");
+        // strip file extension
+        publicId = tail.replace(/\.[^/.]+$/, "");
+      }
+    }
+
+    const res = await fetch(`${API_BASE}/api/delete-asset`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ publicId }),
+    });
+
+    if (!res.ok) {
+      console.warn("Failed to request deletion of asset:", await res.text());
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    console.error("Error requesting Cloudinary deletion:", err);
+    return false;
+  }
+};
+
+export default { getImageUrl, fetchImageUrl, uploadImageToCloudinary, deleteFromCloudinary };

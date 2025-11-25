@@ -11,7 +11,7 @@ function ManageCarousal({ onBack }) {
     title: "",
     info: "",
     img: null,
-    eventId: "",
+    id: "",
   });
   const [imageFile, setImageFile] = useState(null);
   const [carousalList, setCarousalList] = useState([]);
