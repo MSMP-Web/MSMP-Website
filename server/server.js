@@ -8,11 +8,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: process.env.FRONTEND_ORIGIN || "http://localhost:5173",
-  })
-);
+// app.use(
+//   cors({
+//     origin: process.env.FRONTEND_ORIGIN || "http://localhost:5173",
+//   })
+// );
 
 // import routes
 const allDataRoutes = require("./routes/allData");
@@ -37,6 +37,21 @@ app.use("/api/images", imagesRoutes);
 // seed endpoint (dev convenience) - seeds DB with contents from frontend data file
 const path = require("path");
 const { pathToFileURL } = require("url");
+
+const allowedOrigins = ["http://localhost:5173", "https://msmporg.in"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 app.post("/api/seed", async (req, res) => {
   try {
@@ -64,12 +79,14 @@ app.post("/api/seed", async (req, res) => {
     await Slide.deleteMany({});
 
     // insert
-    if (Array.isArray(allData) && allData.length) await AllData.insertMany(allData);
+    if (Array.isArray(allData) && allData.length)
+      await AllData.insertMany(allData);
     if (Array.isArray(VoicesInActionContent) && VoicesInActionContent.length)
       await Voice.insertMany(VoicesInActionContent);
     if (Array.isArray(CalendarEvents) && CalendarEvents.length)
       await CalendarEvent.insertMany(CalendarEvents);
-    if (Array.isArray(notices) && notices.length) await Notice.insertMany(notices);
+    if (Array.isArray(notices) && notices.length)
+      await Notice.insertMany(notices);
     if (Array.isArray(slides) && slides.length) await Slide.insertMany(slides);
 
     res.json({ ok: true, message: "Seeded database from src/data/alldata.js" });
@@ -83,7 +100,9 @@ async function start() {
   try {
     const uri = process.env.MONGO_URI;
     if (!uri) {
-      console.warn("MONGO_URI not set. Set it in .env or environment variables.");
+      console.warn(
+        "MONGO_URI not set. Set it in .env or environment variables."
+      );
     }
     await mongoose.connect(uri || "", {
       // options if needed
