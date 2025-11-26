@@ -39,6 +39,7 @@ const noticesRoutes = require("./routes/notices");
 const slidesRoutes = require("./routes/slides");
 const adminRoutes = require("./routes/admin");
 const imagesRoutes = require("./routes/images");
+const healthCheck = require("./routes/healthCheck"); // Import health check route
 
 // -------------------- USE ROUTES --------------------
 app.use("/api/alldata", allDataRoutes);
@@ -89,6 +90,12 @@ app.post("/api/seed", async (req, res) => {
   }
 });
 
+// -------------------- HEALTH CHECK ROUTE --------------------
+app.get("/ping", (req, res) => {
+  res.status(200).send("OK");
+});
+
+
 // -------------------- START SERVER --------------------
 async function start() {
   try {
@@ -106,3 +113,4 @@ async function start() {
 }
 
 start();
+require("./routes/healthCheck");
